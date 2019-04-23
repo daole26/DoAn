@@ -16,10 +16,10 @@ class Comment extends Migration
         Schema::create('comments', function( Blueprint $table){
             $table->bigIncrements('id');
             $table->text('noi_dung');
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('tour_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('tour_id')->references('id')->on('tours')->onDelete('cascade');
+            $table->unsignedBigInteger('id_users');
+            $table->unsignedBigInteger('id_tour');
+            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_tour')->references('id')->on('tours')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,7 +32,5 @@ class Comment extends Migration
     public function down()
     {
         Schema::dropIfExists('comments');
-        $table->dropForeign(['users_id']);
-        $table->dropForeign(['tour_id']);
     }
 }
