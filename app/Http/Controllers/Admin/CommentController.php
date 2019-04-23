@@ -16,12 +16,15 @@ class CommentController extends Controller
     public function index(string $slug)
     {
         $tour = tour::where('slug', $slug)->first();
-        $comments = comment::join('tours', 'tours.id', '=', 'comments.tour_id')
-            ->join('users', 'users.id', '=', 'comments.user_id')
-            ->where('tours.slug', $slug)
-            ->select(['comments.*', 'users.ten_hien_thi as user_name'])
-            ->paginate(10);
-        return view('Admin.comment.index', compact(['comments', 'tour']));
+        if ($tour) {
+            $comments = comment::join('tours', 'tours.id', '=', 'comments.tour_id')
+                ->join('users', 'users.id', '=', 'comments.user_id')
+                ->where('tours.slug', $slug)
+                ->select(['comments.*', 'users.ten_hien_thi as user_name'])
+                ->paginate(10);
+            return view('Admin.comment.index', compact(['comments', 'tour']));
+        }
+        return abort(404);
     
     }
 
