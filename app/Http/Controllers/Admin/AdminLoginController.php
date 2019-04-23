@@ -33,7 +33,6 @@ class AdminLoginController extends Controller
             'password' => $request->password,
             'level' => 1
         ];
-        
         if (Auth::attempt($login)) {
             return redirect()->route('admincp');
         } else {

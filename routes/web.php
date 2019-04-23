@@ -30,6 +30,8 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::resource('dattour', 'DatTourController')->except('destroy');
 	Route::get('dattour/destroy/{id}', 'DatTourController@destroy')->name('dattour.destroy');
 
+	Route::resource('tintuc', 'TinTucController')->except('destroy');
+	Route::get('tintuc/destroy/{id}', 'TinTucController@destroy')->name('tintuc.destroy');
 });
 
 // ===============================================

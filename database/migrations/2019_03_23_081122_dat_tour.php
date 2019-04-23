@@ -15,20 +15,17 @@ class DatTour extends Migration
     {
         Schema::create('dat_tours', function( Blueprint $table){
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_users');
             $table->string('ma_dat_tour');
-            $table->integer('ngay_dat');
-            $table->integer('thang');
-            $table->integer('nam');
-            $table->string('ho_ten_KH');
-            $table->string('email');
-            $table->string('dia_chi');
+            $table->timestamp('ngay_dat');
+            $table->integer('thoi_gian');
             $table->integer('nguoi_lon')->default (1);
             $table->integer('tre_em')->default (0);
             $table->integer('em_be')->default (0);
+            $table->integer('giam_gia')->default (0);
             $table->text('ghi_chu')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id_users')->references('id')->on('users');
         });
     }
 
@@ -40,6 +37,5 @@ class DatTour extends Migration
     public function down()
     {
         Schema::dropIfExists('dat_tours');
-        $table->dropForeign(['users_id']);
     }
 }

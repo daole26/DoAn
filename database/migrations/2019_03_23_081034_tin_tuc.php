@@ -15,6 +15,7 @@ class TinTuc extends Migration
     {
         Schema::create('tin_tucs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_hinh_anh');
             $table->string('tieu_de',255);
             $table->text('noi_dung');
             $table->timestamps();
