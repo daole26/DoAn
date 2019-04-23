@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
             'token'=>'7162951503',
             'level' => 1,
         ]);
+        factory('App\comment', 2) ->create();
     }
 }
