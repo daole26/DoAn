@@ -8,7 +8,7 @@
                 {{ $comment->noi_dung }}
             </p>
             <div class="comment-footer">
-                <a href="{{ route('user.show', $comment->user_id) }}" class="name">{{ $comment->user_name }} </a>
+                <a href="{{ route('user.show', $comment->id_users) }}" class="name">{{ $comment->user_name }} </a>
                 <span class="comment-at"><i class="fa fa-clock-o"></i>{{ $comment->comment_at }}</span>
                 <span class="text-muted pull-right">
                     <form action="{{ route('tour.comment.destroy', [$tour->slug, $comment->id]) }}" method="post">

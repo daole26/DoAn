@@ -4,13 +4,13 @@ use Faker\Generator as Faker;
 
 $factory->define('App\comment', function (Faker $faker) {
     return [
-        'noi_dung' => $faker->text,
-        'users_id' => function() {
+        'noi_dung' => 'Hướng dẫn viên rất dễ thương, nhiệt tình, vui vẻ. Xe chạy êm và thoải mái. Cảnh quan tuyệt vời. Một chuyến đi đáng nhớ. Nếu có dịp quay lại tôi vẫn sẽ đi tour của công ty.',
+        'id_users' => function() {
             return factory('App\User')->create([
                 'level' => 2,
             ])->id;
         },
-        'tour_id' => function() {
+        'id_tour' => function() {
             return factory('App\tour')->create()->id;
         },
     ];

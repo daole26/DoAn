@@ -10,16 +10,16 @@ class comment extends Model
 
     protected $fillable = [
         'noi_dung',
-        'user_id',
-        'tour_id'
+        'id_users',
+        'id_tour'
     ];
 
     public function user(){
-    	return $this->belongsTo('App\User', 'user_id', 'id');
+    	return $this->belongsTo('App\User', 'id_users', 'id');
     }
 
     public function tour(){
-        return $this->belongsTo('App\tour', 'tour_id', 'id');
+        return $this->belongsTo('App\tour', 'id_tour', 'id');
     }
 
     public function getCommentAtAttribute()

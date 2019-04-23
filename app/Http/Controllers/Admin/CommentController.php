@@ -17,15 +17,14 @@ class CommentController extends Controller
     {
         $tour = tour::where('slug', $slug)->first();
         if ($tour) {
-            $comments = comment::join('tours', 'tours.id', '=', 'comments.tour_id')
-                ->join('users', 'users.id', '=', 'comments.user_id')
+            $comments = comment::join('tours', 'tours.id', '=', 'comments.id_tour')
+                ->join('users', 'users.id', '=', 'comments.id_users')
                 ->where('tours.slug', $slug)
                 ->select(['comments.*', 'users.ten_hien_thi as user_name'])
                 ->paginate(10);
-            return view('Admin.comment.index', compact(['comments', 'tour']));
+            return view('admin.comment.index', compact(['comments', 'tour']));
         }
         return abort(404);
-    
     }
 
     /**
@@ -37,7 +36,7 @@ class CommentController extends Controller
     {
         $tour = tour::where('slug', $slug)->first();
         $comment = comment::findOrFail($id);
-        if ($tour && $comment && $comment->tour_id == $tour->id) {
+        if ($tour && $comment && $comment->id_tour == $tour->id) {
             $comment->delete();
             session()->flash('flashType', 'success');
             session()->flash('flashMessage', 'Xoá thành công');
