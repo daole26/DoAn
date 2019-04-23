@@ -26,7 +26,7 @@ class tour extends Model
     	return $this->belongsTo('App\danh_muc', 'danh_muc_id', 'id');
     }
 
-    public function comment(){
+    public function comments(){
     	return $this->hasMany('App\comment', 'tour_id', 'id');
     }
 
