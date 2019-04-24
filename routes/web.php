@@ -60,8 +60,8 @@ Route::get('/news', function(){
 	return view('news');
 });
 
-Route::get('/tour', function(){
-	return view('tour');
+Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
+    Route::resource('tour', 'TourController')->only(['index', 'show']);
 });
 
 Route::get('/booking', function(){

@@ -27,10 +27,10 @@ class tour extends Model
     }
 
     public function comments(){
-    	return $this->hasMany('App\comment', 'tour_id', 'id');
+    	return $this->hasMany('App\comment', 'id_tour', 'id');
     }
 
     public function chi_tiet_dat_tour(){
-    	return $this->hasMany('App\chi_tiet_dat_tour', 'tour_id', 'id');
+    	return $this->hasMany('App\chi_tiet_dat_tour', 'id_tour', 'id');
     }
 }
