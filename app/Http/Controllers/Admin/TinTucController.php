@@ -11,4 +11,7 @@ class TinTucController extends Controller
     {
         return view('admin.tintuc.show');
     }
+    public function insert(){
+        return view('admin.tintuc.insert');
+    }
 }
