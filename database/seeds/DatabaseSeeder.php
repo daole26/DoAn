@@ -48,5 +48,6 @@ class DatabaseSeeder extends Seeder
             TinTucSeeder::class,
             TourSeeder::class
         ]);
+        factory('App\comment', 2) ->create();
     }
 }

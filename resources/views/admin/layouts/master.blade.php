@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  <!-- Custom css -->
+  <link rel="stylesheet" href="{{asset('admin/css/main.css')}}">
+
 
   @yield('css-page-level-plugin')
 
@@ -83,6 +86,7 @@
 
     <!-- Main content -->
     <section class="content">
+        @include('admin.layouts.partials.block-flash')
       @yield('Content')
     </section>
     <!-- /.content -->

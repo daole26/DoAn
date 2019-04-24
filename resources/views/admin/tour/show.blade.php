@@ -65,6 +65,7 @@
 					<!-- /.box-body -->
 					<div class="box-footer">
 						<a href="{{route('tour.index')}}" class="btn btn-default btn-flat">Quay lại</a>
+						<a href="{{route('tour.comment.index', $tour1->slug)}}" class="btn btn-default btn-flat">Xem bình luận</a>
 					</div>
 				</form>
 			</div>
