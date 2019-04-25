@@ -30,6 +30,8 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::get('dattour/destroy/{id}', 'DatTourController@destroy')->name('dattour.destroy');
 
 	Route::get('tintuc','TinTucController@index')->name('tintuc.index');
+	Route::get('tintuc/insert','TinTucController@insert')->name('tintuc.insert');
+	Route::post('tintuc/insert','TinTucController@store')->name('tintuc.store');
 });
 
 // ===============================================

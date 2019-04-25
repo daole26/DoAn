@@ -21,18 +21,26 @@
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
-				<form action="{{route('danhmuc.store')}}" method="POST">
+				<form id= action="{{route('tintuc.insert')}}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="box-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Tên Danh Mục</label>
-							<input type="text" name="ten_danh_muc" placeholder="Tên danh mục" class="form-control" />
+							<label for="text-title">Tiêu đề</label>
+							<input type="text" name="tieu_de" placeholder="Tiêu đề" class="form-control" />
+                        </div>
+                        <div class="form-group">
+							<label for="txt-noidung">Nội dung</label>
+							<textarea name="noi_dung" class="form-control" id="txt-noidung" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="form-group">
+							<label for="fl-hinhanh">Hình Ảnh</label>
+							<input type="file" name="hinh_anh" id="fl-hinhanh"/>
 						</div>
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
 						<button type="submit" class="btn btn-info btn-flat">Thêm</button>
-						<a href="{{route('danhmuc.index')}}" class="btn btn-default btn-flat">Quay lại</a>
+						<a href="{{route('tintuc.index')}}" class="btn btn-default btn-flat">Quay lại</a>
 					</div>
 				</form>
 			</div>
@@ -40,4 +48,13 @@
 		</div>
 	</div>
 </section>
+@endsection
+@section('script')
+<!-- CK Editor -->
+<script src="{{asset('admin/bower_components/ckeditor/ckeditor.js')}}"></script>
+<script>
+	$(function () {
+	    CKEDITOR.replace('txt-noidung');
+    })
+</script>
 @endsection
