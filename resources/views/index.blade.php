@@ -1380,6 +1380,25 @@
         <a href="tin-tuc.html">Tin tức</a>
     </div>
     <div class="news_grid">
+
+        @php($i=0)
+        @foreach ($tintucs as $tintuc)
+            <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
+                <div class="img_n">
+                    <a  title="{{$tintuc->tieu_de}}" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">
+                        <img alt="{{$tintuc->tieu_de}}" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"/>
+                    </a>
+                </div>
+                <div class="content_n">
+                    <span class="title_n">
+                        <a class="n_title" title="{{$tintuc->tieu_de}}m" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">{{$tintuc->tieu_de}}</a>
+                    </span>
+                    <p class="des_n">
+                        {!!$tintuc->noi_dung!!}
+                    </p>
+                </div>
+            </div>
+        @endforeach
         <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
             <div class="img_n">
                 <a  title="Định vị Đấu trường La Mã tại Việt Nam" href="tin-tuc/dinh-vi-dau-truong-la-ma-tai-viet-nam-1198.html">
@@ -1406,48 +1425,6 @@
                 <a  title="Bãi biển Việt Nam mà check in cứ ngỡ ở Bali" href="tin-tuc/bai-bien-viet-nam-ma-check-in-cu-ngo-o-bali-1197.html">
                     <img alt="Bãi biển Việt Nam mà check in cứ ngỡ ở Bali" src="data/news/500/bai-bien-viet-nam-ma-check-in-cu-ngo-o-bali1.jpg"/>
                 </a>
-            </div>
-        </div>
-        <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-            <div class="img_n">
-                <a  title="Ngắm vườn Tulip lớn nhất Việt Nam tại Bà Nà hills" href="tin-tuc/ngam-vuon-tulip-lon-nhat-viet-nam-tai-ba-na-hills-1196.html">
-                    <img alt="Ngắm vườn Tulip lớn nhất Việt Nam tại Bà Nà hills" src="data/news/500/ngam-vuon-tulip-lon-nhat-viet-nam-tai-ba-na-hills.jpg"/>
-                </a>
-            </div>
-            <div class="content_n">
-                <span class="title_n">
-                    <a class="n_title" title="Ngắm vườn Tulip lớn nhất Việt Nam tại Bà Nà hills" href="tin-tuc/ngam-vuon-tulip-lon-nhat-viet-nam-tai-ba-na-hills-1196.html">Ngắm vườn Tulip lớn nhất Việt Nam tại Bà Nà hills</a>
-                </span>
-                <p class="des_n">
-                Diễn ra từ 14/2 tới 31/3, Lễ hội hoa tulip lớn nhất Việt Nam sẽ là trải nghiệm khó quên của du khách trên đỉnh núi Chúa, tại Sun World Ba Na Hills (Đà Nẵng).            </p>
-            </div>
-        </div>
-        <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-            <div class="content_n">
-                <span class="title_n">
-                    <a class="n_title" title="Đà Nẵng sắp có tuyến &quot;Phố đi bộ-Chợ đêm Bạch Đằng&quot;" href="tin-tuc/da-nang-sap-co-tuyen-pho-di-bo-cho-dem-bach-dang-1195.html">Đà Nẵng sắp có tuyến &quot;Phố đi bộ-Chợ đêm Bạch Đằng&quot;</a>
-                </span>
-                <p class="des_n">
-                Tuyến đường Bạch Đằng tuyệt đẹp nằm giữa 2 cây cầu nổi tiếng là cầu Trần Thị Lý và cầu Rồng được dự kiến sẽ thành tuyến phố đi bộ và chợ đêm tại Đà Nẵng. Phố đi bộ – Chợ đêm Bạch Đằng có quy mô 3,29 ha, phía Bắc giáp đường Bình Minh 5, phía Tây giáp khu dân cư của Cty 319, phía Nam giáp đường Trần Thị Lý, phía Đông giáp sông Hàn.            </p>
-            </div>
-            <div class="img_n">
-                <a  title="Đà Nẵng sắp có tuyến &quot;Phố đi bộ-Chợ đêm Bạch Đằng&quot;" href="tin-tuc/da-nang-sap-co-tuyen-pho-di-bo-cho-dem-bach-dang-1195.html">
-                    <img alt="Đà Nẵng sắp có tuyến &quot;Phố đi bộ-Chợ đêm Bạch Đằng&quot;" src="data/news/500/da-nang-sap-co-tuyen-pho-di-bo-cho-dem-bach-dang.jpg"/>
-                </a>
-            </div>
-        </div>
-        <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-            <div class="img_n">
-                <a  title="Mách bạn địa điểm chụp hình ma mị tại Đà Lạt" href="tin-tuc/mach-ban-dia-diem-chup-hinh-ma-mi-tai-da-lat-1194.html">
-                    <img alt="Mách bạn địa điểm chụp hình ma mị tại Đà Lạt" src="data/news/500/mach-ban-dia-diem-chup-hinh-ma-mi-tai-da-lat.jpg"/>
-                </a>
-            </div>
-            <div class="content_n">
-                <span class="title_n">
-                    <a class="n_title" title="Mách bạn địa điểm chụp hình ma mị tại Đà Lạt" href="tin-tuc/mach-ban-dia-diem-chup-hinh-ma-mi-tai-da-lat-1194.html">Mách bạn địa điểm chụp hình ma mị tại Đà Lạt</a>
-                </span>
-                <p class="des_n">
-                Cùng nhau ghi dấu vẻ đẹp kỳ bí của Phân viện sinh học Đà Lạt, bạn sẽ có bộ ảnh mang đậm chất riêng vô cùng đặc sắc.            </p>
             </div>
         </div>
         <div class="clearfix"></div>

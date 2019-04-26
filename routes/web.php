@@ -49,9 +49,8 @@ Route::get('activate/{token}', 'Auth\RegisterController@activate')
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 	
-Route::get('/', function(){
-	return view('index');
-});
+Route::get('/', 'IndexController@index');
+Route::get('/tin-tuc/{slug}', 'IndexController@tintuc')->name('index.tintuc');
 
 Route::get('/login', function(){
 	return view('login');
