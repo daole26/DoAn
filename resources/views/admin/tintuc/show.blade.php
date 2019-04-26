@@ -14,7 +14,7 @@
             <div class="box-header">
                 <div class="box-title">
                     <div class="btn-group">
-                    <a href="{{route('danhmuc.create')}}" id="sample_editable_1_new" class="btn btn-info btn-flat"> Thêm mới
+                    <a href="{{route('tintuc.insert')}}" id="sample_editable_1_new" class="btn btn-info btn-flat"> Thêm mới
                         <i class="fa fa-plus"></i>
                     </a>
                     </div>
@@ -27,27 +27,31 @@
                     <th>STT</th>
                     <th>Tiêu đề</th>
                     <th>Nội dung</th>
+                    <th>Hình ảnh</th>
                     <th>Hành Động</th>
                     </tr>
                 </thead>
                 @php($i=0)
                 <tbody>
+                    @foreach($tintucs as $tintuc)
                     <tr>
-                        <td> 1 </td>
-                        <td> Tour trong nước </td>
-                        <td>{{mb_substr('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem nihil corporis eius accusamus soluta in aliquid ad voluptatem omnis alias, consequatur natus, officia aspernatur? Quas fuga recusandae veniam facilis cumque',0,50)}}...</td>
+                        <td> {{$i++}} </td>
+                        <td> {{$tintuc->tieu_de}} </td>
+                        <td>{{mb_substr(strip_tags($tintuc->noi_dung),0,50)}}...</td>
+                        <td><img width="100px" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"></td>
                         <td>
-                            <a href="{{url('admincp/edit')}}" class="btn btn-info btn-flat">
+                            <a href="{{route('tintuc.edit',['id'=>$tintuc->id])}}" class="btn btn-info btn-flat">
                                 <i class="fa fa-pencil"></i>
                             </a>
-                            <a href="{{url('admincp/show')}}" class="btn btn-default btn-flat">
+                            <a href="{{route('tintuc.detail',['id'=>$tintuc->id])}}" class="btn btn-default btn-flat">
                                 <i class="fa fa-eye"></i>
                             </a>
-                            <a href="{{url('admincp/delete')}}" class="btn btn-danger btn-flat" data-toggle="confirmation" data-popout="true" data-original-title="Bạn có chắc không ?">
+                            <a href="{{route('tintuc.delete',['id'=>$tintuc->id])}}" class="btn btn-danger btn-flat" data-toggle="confirmation" data-popout="true" data-original-title="Bạn có chắc không ?">
                                 <i class="fa fa-trash"></i>
                             </a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
           </div>

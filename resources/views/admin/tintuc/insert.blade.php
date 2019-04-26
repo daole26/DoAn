@@ -21,7 +21,7 @@
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
-				<form id= action="{{route('tintuc.insert')}}" method="POST" enctype="multipart/form-data">
+				<form action="{{route('tintuc.insert')}}" method="POST" enctype="multipart/form-data">
 					@csrf
 					<div class="box-body">
 						<div class="form-group">

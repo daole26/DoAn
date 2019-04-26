@@ -33,6 +33,10 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::get('tintuc','TinTucController@index')->name('tintuc.index');
 	Route::get('tintuc/insert','TinTucController@insert')->name('tintuc.insert');
 	Route::post('tintuc/insert','TinTucController@store')->name('tintuc.store');
+	Route::get('tintuc/edit/{id}','TinTucController@edit')->name('tintuc.edit');
+	Route::post('tintuc/edit','TinTucController@postEdit')->name('tintuc.postEdit');
+	Route::get('tintuc/detail/{id}','TinTucController@detail')->name('tintuc.detail');
+	Route::get('tintuc/delete/{id}','TinTucController@delete')->name('tintuc.delete');
 });
 
 // ===============================================
