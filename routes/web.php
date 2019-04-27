@@ -64,6 +64,10 @@ Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
     Route::resource('tour', 'TourController')->only(['index', 'show']);
 });
 
+Route::group(['namespace' => 'User'], function () {
+    Route::get('search','SearchController@getSearch')->name('user.search');
+});
+
 Route::get('/booking', function(){
 	return view('booking');
 });
@@ -81,4 +85,3 @@ Route::get('/details', function(){
 });
 
 Auth::routes();
-

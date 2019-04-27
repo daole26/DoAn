@@ -33,4 +33,9 @@ class tour extends Model
     public function chi_tiet_dat_tour(){
     	return $this->hasMany('App\chi_tiet_dat_tour', 'id_tour', 'id');
     }
+
+    public function searchTour($name)
+    {
+        return $this->where('ten_tour','like','%'.$name.'%')->get();
+    }
 }
