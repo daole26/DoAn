@@ -12,6 +12,7 @@ class User extends Authenticatable
 
     const ACTIVE = 1;
     const INACTIVE = 0;
+    const LEVEL_ADMIN = 1;
 
     /**
      * The attributes that are mass assignable.
@@ -46,5 +47,12 @@ class User extends Authenticatable
 
     public function dattour(){
         return $this->hasMany('App\dat_tour', 'id_users', 'id');
+    }
+
+    /**
+     * Check is Admin
+     */
+    public function isAdmin() {
+        return $this->level == self::LEVEL_ADMIN;
     }
 }

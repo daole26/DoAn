@@ -6,56 +6,42 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <!--Css-->
-    <link href="templates/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="templates/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="templates/css/cart.css" rel="stylesheet" type="text/css" />
-    <link href="templates/css/style.css" rel="stylesheet" type="text/css" />
-    <link href="templates/lightslider/css/lightslider.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/css/cart.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/lightslider/css/lightslider.css') }}" rel="stylesheet" type="text/css" />
 
-    <link href="templates/css/jcarousel.responsive.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('templates/css/jcarousel.responsive.css') }}" rel="stylesheet" type="text/css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto&amp;subset=latin,vietnamese' rel='stylesheet'
         type='text/css'>
+    @section('style')
+    {{-- custom style for each page --}}
+    @show
     <!--Javascipt-->
     <script type="text/javascript">
         var base_url = 'index.html';
 
     </script>
-    <script src="templates/js/jquery.min.js"></script>
-    <script src="templates/js/bootstrap.min.js"></script>
-    <script src="templates/js/function.js"></script>
+    <script src="{{ asset('templates/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('templates/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('templates/js/function.js') }}"></script>
     <!--<script src="templates/js/jquery.lazyload.js"></script>-->
-    <script src="templates/js/jquery.validate.min.js" type="text/javascript"></script>
-    <script src="templates/lightslider/js/lightslider.js" type="text/javascript"></script>
-    <script src="templates/js/jquery.ellipsis.js" type="text/javascript"></script>
-    <script src="templates/js/book.js" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/jquery.validate.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/lightslider/js/lightslider.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/jquery.ellipsis.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/book.js') }}" type="text/javascript"></script>
 
-    <script src="templates/js/jquery.vticker.min.js" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/jquery.vticker.min.js') }}" type="text/javascript"></script>
     <!--<script src="templates/js/jquery.fancybox.js" type="text/javascript"></script>-->
-    <script src="templates/js/jquery.jcarousel.min.js" type="text/javascript"></script>
-    <script src="templates/js/jcarousel.responsive.js" type="text/javascript"></script>
-    <script src="templates/js/dnx.js" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/jquery.jcarousel.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/jcarousel.responsive.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('templates/js/dnx.js') }}" type="text/javascript"></script>
 
 
     <title>Hà Tĩnh TravelStar hệ thống đặt tour du lịch Việt Nam chất lượng 2019</title>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '../www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-44957849-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
-    <script src="../apis.google.com/js/platform.js" async defer></script>
+    {{-- <script src="../apis.google.com/js/platform.js" async defer></script> --}}
 
     <div id="fb-root"></div>
     <script>
@@ -64,7 +50,7 @@
             if (d.getElementById(id)) return;
             js = d.createElement(s);
             js.id = id;
-            js.src = "../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+            // js.src = "../connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
 
@@ -104,7 +90,7 @@
                 <div class="boxLogo">
                     <a title="DANANGXANH" href="{{url('/')}}">
                         <img alt="Du lịch Đà Nẵng Xanh hệ thống đặt tour du lịch Việt Nam chất lượng 2018"
-                            src="templates/images/logo.png" />
+                            src="{{ asset('templates/images/logo.png') }}" />
                     </a>
                 </div>
             </div>

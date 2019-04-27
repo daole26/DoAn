@@ -5,7 +5,7 @@
             <li>
                 <div>
                     <a title="Tour trong nước" href="tour-trong-nuoc.html">
-                       <img src="templates/images/icon/tour-trong-nuoc1467040455.png">                        <span>
+                       <img src="{{ asset('templates/images/icon/tour-trong-nuoc1467040455.png') }}">                        <span>
                        Tour trong nước                        </span>
                        <div class="clearfix"></div>
                    </a>
@@ -24,7 +24,7 @@
         <li>
             <div>
                 <a title="Tour hằng ngày" href="tour-hang-ngay.html">
-                   <img src="templates/images/icon/tour-hang-ngay1467040493.png">                        <span>
+                   <img src="{{ asset('templates/images/icon/tour-hang-ngay1467040493.png') }}">                        <span>
                    Tour hằng ngày                        </span>
                    <div class="clearfix"></div>
                </a>
@@ -48,7 +48,7 @@
     <li>
         <div>
             <a title="Tour Đà Nẵng" href="tour-da-nang.html">
-               <img src="templates/images/icon/tour-da-nang1467040447.png">                        <span>
+               <img src="{{ asset('templates/images/icon/tour-da-nang1467040447.png') }}">                        <span>
                Tour Đà Nẵng                        </span>
                <div class="clearfix"></div>
            </a>
@@ -70,7 +70,7 @@
 <li>
     <div>
         <a title="Tour sự kiện nổi bật" href="tour-su-kien-noi-bat.html">
-           <img src="templates/images/icon/tour-su-kien-noi-bat1467040464.png">                        <span>
+           <img src="{{ asset('templates/images/icon/tour-su-kien-noi-bat1467040464.png') }}">                        <span>
            Tour sự kiện nổi bật                        </span>
            <div class="clearfix"></div>
        </a>
@@ -89,7 +89,7 @@
 <li>
     <div>
         <a title="Tour nước ngoài" href="tour-nuoc-ngoai.html">
-           <img src="templates/images/icon/tour-nuoc-ngoai1516617019.png">                        <span>
+           <img src="{{ asset('templates/images/icon/tour-nuoc-ngoai1516617019.png') }}">                        <span>
            Tour nước ngoài                        </span>
            <div class="clearfix"></div>
        </a>
