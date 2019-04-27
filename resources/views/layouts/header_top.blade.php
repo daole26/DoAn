@@ -9,12 +9,12 @@
 
                                 <div class="row_sup">
                                     <div class="avt">
-                                        <img width="100%" src="data/support/mr-trung1.jpg"/>
+                                        <img width="100%" src="{{ asset('data/support/mr-trung1.jpg') }}"/>
                                     </div>
                                     <div class="content">
                                         <p class="name">Mr Trung</p>
                                         <span>
-                                            <a href="skype:#?chat" ><img src="data/images/chatbutton_12px.png" alt="Mr Trung"  ></a>
+                                            <a href="skype:#?chat" ><img src="{{ asset('data/images/chatbutton_12px.png') }}" alt="Mr Trung"  ></a>
                                         </span>
                                         <span>0974 818 106</span>
                                     </div>
@@ -23,12 +23,12 @@
 
                                 <div class="row_sup">
                                     <div class="avt">
-                                        <img width="100%" src="data/support/ms-cao-phuong.png"/>
+                                        <img width="100%" src="{{ asset('data/support/ms-cao-phuong.png') }}"/>
                                     </div>
                                     <div class="content">
                                         <p class="name">Ms Cao Phương</p>
                                         <span>
-                                            <a href="skype:caophuong97?chat" ><img src="data/images/chatbutton_12px.png" alt="Ms Cao Phương"  ></a>
+                                            <a href="skype:caophuong97?chat" ><img src="{{ asset('data/images/chatbutton_12px.png') }}" alt="Ms Cao Phương"  ></a>
                                         </span>
                                         <span>0913 818 107</span>
                                     </div>

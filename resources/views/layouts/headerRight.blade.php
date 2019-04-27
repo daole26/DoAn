@@ -6,12 +6,12 @@
                             <li class="active">
                                 <a  href="{{url('/')}}">
                                     <p>Trang chủ</p>
-                                    <img width="40px" src="templates/images/home.png"/>
+                                    <img width="40px" src="{{ asset('templates/images/home.png') }}"/>
                                 </a>
                             </li>
                             <li >
                                 <a  href="{{url('tour')}}">
-                                    <img width="40px" src="templates/images/tour.png"/>
+                                    <img width="40px" src="{{ asset('templates/images/tour.png') }}"/>
                                     <p>Tour</p>
                                 </a>
                             </li>
@@ -19,7 +19,7 @@
                             <li 1 >
                                 <a  href="{{url('news')}}">
                                     <p>Tin tức</p>
-                                    <img width="40px" src="templates/images/tin-tuc1467729692.png"/>
+                                    <img width="40px" src="{{ asset('templates/images/tin-tuc1467729692.png') }}"/>
                                 </a>
                                 <ul class="nav_sub">
                                     <li class="top"></li>
@@ -30,14 +30,14 @@
                             </li>
                             <li 0 >
                                 <a  href="{{url('food')}}">
-                                    <img width="40px" src="templates/images/am-thuc1467729704.png"/>
+                                    <img width="40px" src="{{ asset('templates/images/am-thuc1467729704.png') }}"/>
                                     <p>Ẩm thực</p>
                                 </a>
                             </li>
                             <li >
                                 <a  href="{{url('/contact')}}">
                                     <p>Liên hệ</p>
-                                    <img width="40px" src="templates/images/lienhe.png"/>
+                                    <img width="40px" src="{{ asset('templates/images/lienhe.png') }}"/>
                                 </a>
                             </li>                     
                         </ul>
@@ -45,7 +45,7 @@
                     </div>
 
                     <style type="text/css">
-                        .main_nav{margin-top: 20px;  background-image: url("templates/images/bg_nav.png"); background-repeat: no-repeat  }
+                        .main_nav{margin-top: 20px;  background-image: "{{asset('templates/images/bg_nav.png') }} "; background-repeat: no-repeat  }
                         .main_nav>ul>li{
                             float: left;
                             padding: 10px 0px;

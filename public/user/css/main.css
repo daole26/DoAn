@@ -1,0 +1,72 @@
+/* Tour stylesheet */
+.cate>ul {
+    margin: -5px;
+    padding-bottom: 5px;
+}
+
+.cate>ul>li {
+    border-bottom: #F3F3F3 solid 1px;
+}
+
+.cate>ul>li>span {
+    margin-top: 6px;
+    color: #666;
+    cursor: pointer;
+    float: right;
+    margin-right: 20px;
+}
+
+.cate>ul>li>a {
+    padding-left: 20px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #666
+}
+
+.cate>ul>li:last-child {
+    border-bottom: none
+}
+
+.cate>ul>li>ul {
+    padding-left: 40px;
+}
+
+.cate>ul>li>ul>li {
+    line-height: 25px;
+}
+
+.cate>ul>li>ul>li:last-child {
+    margin-bottom: 10px
+}
+
+.support {
+    padding: 0 10px 10px 10px;
+    border-bottom: #F3F3F3 solid 1px;
+    margin-bottom: 10px;
+}
+
+.support .avt {
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
+    width: 30%;
+    border-radius: 50%;
+}
+
+.support .avt img {
+    max-width: 80%;
+}
+
+.support .content a {
+    text-decoration: none;
+}
+
+.support .content span {
+    margin-bottom: 2px;
+    color: #666;
+    font-size: 16px;
+}
+
+.support .content p {
+    margin: 0 0 2px;
+}
