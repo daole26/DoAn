@@ -36,7 +36,7 @@
                                     <strong>/ người lớn</strong>
                                 </div>
                                 <div style="text-align: center">
-                                    <a class="btn_book" href="https://dulichdanangxanh.com/dat-tour/tour-hoi-an-di-tu-da-nang-139.html">
+                                    <a class="btn_book" href="{{ route('user.tour.booking.create', $tour->slug) }}">
                                     <input class="btn_booking" type="button" value="Đặt Tour">
                                     </a>
                                 </div>

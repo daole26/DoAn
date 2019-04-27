@@ -11,7 +11,10 @@ $factory->define('App\comment', function (Faker $faker) {
             ])->id;
         },
         'id_tour' => function() {
-            return factory('App\tour')->create()->id;
+            return factory('App\tour')->create([
+                'ten_tour' => 'tour đi Đà Nẵng' . random_int(1, 10),
+                'slug' => 'tour' . random_int(1, 10),
+            ])->id;
         },
     ];
 });

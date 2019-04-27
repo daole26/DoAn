@@ -1,15 +1,15 @@
 $(document).ready(function() {
-   
-   
+
+    /**
     $("#nl").change(function(){
         var qty = $(this).val();
         var tn = $("#trnho").val();
         var id = $("#tour_id").val();
         $.get(base_url+"tour/tour_price/?qty="+qty+"&tn="+tn+"&id="+id ,function(data){
             $("#total_payment").html(data.price);
-        },'json');        
+        },'json');
     });
-    
+
     $("#trnho").change(function(){
         var tn = $(this).val();
         var qty = $("#nl").val();
@@ -18,10 +18,11 @@ $(document).ready(function() {
             $("#total_payment").html(data.price);
         },'json');
     });
-    
-        
-    
-    
+     */
+
+
+
+/**
     $("#book_tour").validate({
         errorElement: "div",
         ignore: "",
@@ -39,7 +40,7 @@ $(document).ready(function() {
             'address': {required : "Vui lòng nhập Địa chỉ"},
             'phone': {required : "Vui lòng nhập Điện thoại"},
             'email': {required : "Vui lòng nhập Email", email: "Email nhập không đúng định dạng"},
-            'day': {required :"Chọn ngày đi"} , 
+            'day': {required :"Chọn ngày đi"} ,
             'adults': {required :"Chọn số người lớn",min:"Người lớn tối thiểu phải = 1"}  ,
             'captcha': {required: "Vui lòng nhập mã bảo vệ"}
         },
@@ -54,35 +55,36 @@ $(document).ready(function() {
                     }
                 },'json');
                 return false;
-            
+
         }
     });
-    
-    
-    
+ */
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     $("input[name='bank_name']").keyup(function(){
         if($(this).val().length > 0){
             $("#bank_name").html('').hide();
         }else{
-            $("#bank_name").html(str_bank_name).show();            
+            $("#bank_name").html(str_bank_name).show();
         }
     });
-    
+
     $("input[name='pay_name']").keyup(function(){
         if($(this).val().length > 0){
             $("#pay_name").html('').hide();
         }else{
-            $("#pay_name").html(str_pay_name).show();            
+            $("#pay_name").html(str_pay_name).show();
         }
     });
-    
+
     $("input[name='pay_number']").keyup(function(){
         if($(this).val().length > 0){
             $("#pay_number").html('').hide();
@@ -90,7 +92,7 @@ $(document).ready(function() {
             $("#pay_number").html(str_pay_number).show();
         }
     });
-    
+
     $(".type_pay").click(function(){
         var id = $(this).val();
         if(id == 1){
@@ -99,7 +101,7 @@ $(document).ready(function() {
             $(".pay_online").show();
         }
     });
-    
+
     $(".flip").click(function() {
         var payment = $(this).attr('payment');
         $('.panel').hide('slow');
@@ -118,17 +120,17 @@ $(document).ready(function() {
 //        $(".datepicker").datepicker({
 //                changeMonth: true,
 //                changeYear: true,
-//                dateFormat: 'dd-mm-yy', 
+//                dateFormat: 'dd-mm-yy',
 //                numberOfMonths: 1,
 //                yearRange: '1920:2014'
-//        });    
+//        });
     ///})
 //    $(".validation").live('keyup',function(){
 //        if($(this).val() != ''){
 //            $(this).removeClass('error');
 //        }
 //    })
-    
+
     // Thong tin khach hang dat tour
     /*
     $("#nl").change(function(){
@@ -143,7 +145,7 @@ $(document).ready(function() {
                 html +='<td><b>'+k+'</b></td>';
                 html +='<td><input type="text" name="ar_name_nl[]" class="validation" placeholder="Họ và tên"></td>';
                 html +='<td><input type="text" name="ar_date_nl[]" class="datepicker validation" placeholder="Ngày sinh"></td>';
-            html +='</tr>';                
+            html +='</tr>';
             }
             $("#list_adults tbody").append(html);
         }else{
@@ -154,12 +156,12 @@ $(document).ready(function() {
         $(".datepicker").datepicker({
                changeMonth: true,
                 changeYear: true,
-                dateFormat: 'dd-mm-yy', 
+                dateFormat: 'dd-mm-yy',
                 numberOfMonths: 1,
                 yearRange: '1920:2014'
-        }); 
+        });
     })
-    
+
     $("#trnho").change(function(){
         var total = $(this).val();
         if(total > 0){
@@ -173,7 +175,7 @@ $(document).ready(function() {
                     html +='<td><b>'+k+'</b></td>';
                     html +='<td><input type="text" name="ar_name_te[]" class="validation" placeholder="Họ và tên"></td>';
                     html +='<td><input type="text" name="ar_date_te[]" class="datepicker validation" placeholder="Ngày sinh"></td>';
-                html +='</tr>';                
+                html +='</tr>';
                 }
                 $("#list_children tbody").append(html);
             }else{
@@ -188,12 +190,12 @@ $(document).ready(function() {
         $(".datepicker").datepicker({
                changeMonth: true,
                 changeYear: true,
-                dateFormat: 'dd-mm-yy', 
+                dateFormat: 'dd-mm-yy',
                 numberOfMonths: 1,
                 yearRange: '1920:2014'
-        }); 
-    })    
-    
+        });
+    })
+
     $("#baby").change(function(){
         var total = $(this).val();
         if(total > 0){
@@ -207,7 +209,7 @@ $(document).ready(function() {
                     html +='<td><b>'+k+'</b></td>';
                     html +='<td><input type="text" name="ar_name_eb[]" class="validation" placeholder="Họ và tên"></td>';
                     html +='<td><input type="text" name="ar_date_eb[]" class="datepicker validation" placeholder="Ngày sinh"></td>';
-                html +='</tr>';                
+                html +='</tr>';
                 }
                 $("#list_baby tbody").append(html);
             }else{
@@ -222,17 +224,17 @@ $(document).ready(function() {
         $(".datepicker").datepicker({
                changeMonth: true,
                 changeYear: true,
-                dateFormat: 'dd-mm-yy', 
+                dateFormat: 'dd-mm-yy',
                 numberOfMonths: 1,
                 yearRange: '1920:2014'
-        }); 
-    }) 
+        });
+    })
      */
 });
-    
+
 function strtotime(text, now) {
-  // Convert string representation of date and time to a timestamp  
-  // 
+  // Convert string representation of date and time to a timestamp
+  //
   // version: 1109.2015
   // discuss at: http://phpjs.org/functions/strtotime
   // +   original by: Caio Ariede (http://caioariede.com)

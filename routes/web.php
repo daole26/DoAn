@@ -12,7 +12,7 @@ Route::post('admincp/login', ['as' => 'postLogin', 'uses' => 'Admin\AdminLoginCo
 Route::get('admincp/logout', ['as' => 'getLogout', 'uses' => 'Admin\AdminLoginController@getLogout']);
 
 Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespace' => 'Admin'], function(){
-	
+
 	Route::get('/', function() {
 		return view('admin.home');
 	})->name('admincp');
@@ -43,7 +43,7 @@ Route::get('activate/{token}', 'Auth\RegisterController@activate')
 	->name('activate');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-	
+
 Route::get('/', function(){
 	return view('index');
 });
@@ -62,10 +62,7 @@ Route::get('/news', function(){
 
 Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
     Route::resource('tour', 'TourController')->only(['index', 'show']);
-});
-
-Route::get('/booking', function(){
-	return view('booking');
+    Route::resource('tour.booking', 'BookingController')->middleware('auth')->only(['create']);
 });
 
 Route::get('/food', function(){

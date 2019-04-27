@@ -16,7 +16,8 @@ class TourController extends Controller
      */
     public function index()
     {
-        return view('tour');
+        $count = tour::count();
+        return view('tour.index', compact('count'));
     }
 
     /**
@@ -33,5 +34,22 @@ class TourController extends Controller
         abort_if(!$tour, 404);
         $totalComment = comment::where('id_tour', $tour->id)->count();
         return view('tour.show', compact('tour', 'totalComment'));
+    }
+
+    /**
+     * Load more tours
+     */
+    public function loadMore(Request $request)
+    {
+        try {
+            $tours = tour::with(['hinhThucTour', 'hinhAnhs'])
+                ->skip($request->index)
+                ->limit($request->index == 0 ? 12 : 4) //Fist loading
+                ->get();
+                return response()->json($tours, 200);
+        } catch (\Exception $e) {
+            \Log::error($e);
+            return response()->json('Error', 500);
+        }
     }
 }
