@@ -31,7 +31,7 @@
                     <th>Hành Động</th>
                     </tr>
                 </thead>
-                @php($i=0)
+                @php($i=1)
                 <tbody>
                     @foreach($tintucs as $tintuc)
                     <tr>
