@@ -14,6 +14,7 @@ class IndexController extends Controller
     public function tintuc($slug)
     {
         $tintucs = App\tin_tuc::where('slug',$slug)->first();
+        return view('tintuc',['slug'=>$slug,'tintuc'=>$tintuc]);
         //return view('index',['tintucs'=>$tintucs]);
     }
 }
