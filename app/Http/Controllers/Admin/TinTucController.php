@@ -3,83 +3,85 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App;
 use App\Http\Controllers\Controller;
 
 class TinTucController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $tintuc = App\tin_tuc::all();
+        return view('admin.tintuc.show',['tintucs'=>$tintuc]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.tintuc.create');
+    public function insert(){
+        return view('admin.tintuc.insert');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $tintuc = App\tin_tuc::where('id',$id)->first();
+        return view('admin.tintuc.edit',['tintuc'=>$tintuc]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function detail($id)
     {
-        //
+        $tintuc = App\tin_tuc::where('id',$id)->first();
+        return view('admin.tintuc.detail',['tintuc'=>$tintuc]);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function postEdit(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'tieu_de' => 'required',
+            'noi_dung' => 'required',
+            'hinh_anh' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+        $arr_update=[
+            'tieu_de'=>$request->tieu_de,
+            'noi_dung'=>$request->noi_dung
+        ];
+        $tintuc = App\tin_tuc::where('id',$request->id);
+        $tintuc->update($arr_update);
+        if(!empty($request->hinh_anh)){
+            $tintuc = $tintuc->first();
+            $path = public_path('images/'.$tintuc->hinh_anh->hinh_anh);
+            if(file_exists($path)){
+                unlink($path);
+            }
+            $imageName = time().'.'.$request->hinh_anh->getClientOriginalExtension();
+            $request->hinh_anh->move(public_path('images'),$imageName);
+            $tintuc->hinh_anh->update(['hinh_anh'=>$imageName]);
+        }
+        return redirect()->route('tintuc.index');
+    }
+    public function delete($id)
+    {
+        $tintuc = App\tin_tuc::where('id',$id);
+        $hinh_anh = $tintuc->first()->hinh_anh->first();
+        $path = public_path('images/'.$hinh_anh->hinh_anh);
+        if(file_exists($path)){
+            unlink($path);
+        }
+        $tintuc->delete();
+        $hinh_anh->delete();
+        return redirect()->route('tintuc.index');
+    }
+    public function  store(Request $request){
+
+        $validatedData = $request->validate([
+            'tieu_de' => 'required',
+            'noi_dung' => 'required',
+            'hinh_anh' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ]);
+
+        $tintuc = new App\tin_tuc;
+        $tintuc->tieu_de = $request->tieu_de;
+        $tintuc->noi_dung = $request->noi_dung;
+        $tintuc->save();
+        $imageName = time().'.'.$request->hinh_anh->getClientOriginalExtension();
+        $request->hinh_anh->move(public_path('images'),$imageName);
+        $hinh_anh = new App\HinhAnh;
+        $hinh_anh->hinh_anh = $imageName;
+        $hinh_anh->image_id = $tintuc->id;
+        $hinh_anh->image_type = 'tin_tucs';
+        $tintuc->hinh_anh()->save($hinh_anh);
+        return redirect()->route('tintuc.index');
     }
 }

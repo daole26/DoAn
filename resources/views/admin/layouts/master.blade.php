@@ -27,14 +27,14 @@
   <link rel="stylesheet" href="{{asset('admin/bower_components/bootstrap-daterangepicker/daterangepicker.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  
   <!-- Custom css -->
   <link rel="stylesheet" href="{{asset('admin/css/main.css')}}">
-
-
   @yield('css-page-level-plugin')
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  @yield('custom-css')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

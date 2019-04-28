@@ -30,8 +30,13 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::resource('dattour', 'DatTourController')->except('destroy');
 	Route::get('dattour/destroy/{id}', 'DatTourController@destroy')->name('dattour.destroy');
 
-	Route::resource('tintuc', 'TinTucController')->except('destroy');
-	Route::get('tintuc/destroy/{id}', 'TinTucController@destroy')->name('tintuc.destroy');
+	Route::get('tintuc','TinTucController@index')->name('tintuc.index');
+	Route::get('tintuc/insert','TinTucController@insert')->name('tintuc.insert');
+	Route::post('tintuc/insert','TinTucController@store')->name('tintuc.store');
+	Route::get('tintuc/edit/{id}','TinTucController@edit')->name('tintuc.edit');
+	Route::post('tintuc/edit','TinTucController@postEdit')->name('tintuc.postEdit');
+	Route::get('tintuc/detail/{id}','TinTucController@detail')->name('tintuc.detail');
+	Route::get('tintuc/delete/{id}','TinTucController@delete')->name('tintuc.delete');
 });
 
 // ===============================================
@@ -43,10 +48,9 @@ Route::get('activate/{token}', 'Auth\RegisterController@activate')
 	->name('activate');
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-Route::get('/', function(){
-	return view('index');
-});
+	
+Route::get('/', 'IndexController@index');
+Route::get('/tin-tuc/{slug}', 'IndexController@tintuc')->name('index.tintuc');
 
 Route::get('/login', function(){
 	return view('login');
