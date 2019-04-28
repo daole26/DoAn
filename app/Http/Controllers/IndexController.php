@@ -14,7 +14,6 @@ class IndexController extends Controller
     public function tintuc($slug)
     {
         $tintucs = App\tin_tuc::where('slug',$slug)->first();
-        return 'chức năng này đang chờ nâng cấp';
         //return view('index',['tintucs'=>$tintucs]);
     }
 }

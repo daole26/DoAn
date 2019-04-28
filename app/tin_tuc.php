@@ -21,6 +21,6 @@ class tin_tuc extends Model
     }
     public function hinh_anh()
     {
-        return $this->morphOne('App\hinh_anh','image');
+        return $this->morphOne('App\HinhAnh','image');
     }
 }

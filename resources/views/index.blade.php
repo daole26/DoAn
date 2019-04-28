@@ -1384,11 +1384,13 @@
         @php($i=0)
         @foreach ($tintucs as $tintuc)
             <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
+                @if(($i)%2==0)
                 <div class="img_n">
                     <a  title="{{$tintuc->tieu_de}}" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">
                         <img alt="{{$tintuc->tieu_de}}" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"/>
                     </a>
                 </div>
+                @endif
                 <div class="content_n">
                     <span class="title_n">
                         <a class="n_title" title="{{$tintuc->tieu_de}}m" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">{{$tintuc->tieu_de}}</a>
@@ -1397,36 +1399,16 @@
                         {!!$tintuc->noi_dung!!}
                     </p>
                 </div>
+                @if(($i)%2!=0)
+                <div class="img_n">
+                    <a  title="{{$tintuc->tieu_de}}" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">
+                        <img alt="{{$tintuc->tieu_de}}" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"/>
+                    </a>
+                </div>
+                @endif
             </div>
+            @php($i++)
         @endforeach
-        <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-            <div class="img_n">
-                <a  title="Định vị Đấu trường La Mã tại Việt Nam" href="tin-tuc/dinh-vi-dau-truong-la-ma-tai-viet-nam-1198.html">
-                    <img alt="Định vị Đấu trường La Mã tại Việt Nam" src="data/news/500/dinh-vi-dau-truong-la-ma-tai-viet-nam.jpg"/>
-                </a>
-            </div>
-            <div class="content_n">
-                <span class="title_n">
-                    <a class="n_title" title="Định vị Đấu trường La Mã tại Việt Nam" href="tin-tuc/dinh-vi-dau-truong-la-ma-tai-viet-nam-1198.html">Định vị Đấu trường La Mã tại Việt Nam</a>
-                </span>
-                <p class="des_n">
-                Đấu trường La Mã luôn được xem là công trình tiêu biểu, đại diện cho nền kiến trúc phương Tây. Trong đó, những cái tên như: đấu trường Verona, Colosseum hay Parthenon luôn là những nơi mà ai cũng ao ước được một lần đặt chân đến. Nhưng ước ao thế thôi chứ đi du lịch châu Âu vừa xa, vừa tốn nhiều kinh phí nên không phải bạn trẻ nào cũng có túi tiền rủng rỉnh để làm một chuyến đâu.            </p>
-            </div>
-        </div>
-        <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-            <div class="content_n">
-                <span class="title_n">
-                    <a class="n_title" title="Bãi biển Việt Nam mà check in cứ ngỡ ở Bali" href="tin-tuc/bai-bien-viet-nam-ma-check-in-cu-ngo-o-bali-1197.html">Bãi biển Việt Nam mà check in cứ ngỡ ở Bali</a>
-                </span>
-                <p class="des_n">
-                Chẳng cần đi Bali hay Hawaii, bạn vẫn có thể chụp được vô vàn ảnh sống ảo cực thần thái tại khu nghỉ dưỡng này            </p>
-            </div>
-            <div class="img_n">
-                <a  title="Bãi biển Việt Nam mà check in cứ ngỡ ở Bali" href="tin-tuc/bai-bien-viet-nam-ma-check-in-cu-ngo-o-bali-1197.html">
-                    <img alt="Bãi biển Việt Nam mà check in cứ ngỡ ở Bali" src="data/news/500/bai-bien-viet-nam-ma-check-in-cu-ngo-o-bali1.jpg"/>
-                </a>
-            </div>
-        </div>
         <div class="clearfix"></div>
     </div>
 </div>

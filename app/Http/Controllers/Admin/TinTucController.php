@@ -77,7 +77,7 @@ class TinTucController extends Controller
         $tintuc->save();
         $imageName = time().'.'.$request->hinh_anh->getClientOriginalExtension();
         $request->hinh_anh->move(public_path('images'),$imageName);
-        $hinh_anh = new App\hinh_anh;
+        $hinh_anh = new App\HinhAnh;
         $hinh_anh->hinh_anh = $imageName;
         $hinh_anh->image_id = $tintuc->id;
         $hinh_anh->image_type = 'tin_tucs';
