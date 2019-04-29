@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
@@ -26,5 +27,13 @@ class Booking extends Model
     public function bookingDetail()
     {
         return $this->hasOne(BookingDetail::class, 'id_dat_tour', 'id');
+    }
+
+    /**
+     * One booking belongs one user.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_users');
     }
 }
