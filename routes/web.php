@@ -74,6 +74,14 @@ Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
     Route::resource('tour.booking', 'BookingController')->middleware('auth')->only(['create']);
 });
 
+Route::group(['namespace' => 'User'], function () {
+    Route::get('search','SearchController@getSearch')->name('user.search');
+});
+
+Route::get('/booking', function(){
+	return view('booking');
+});
+
 Route::get('/food', function(){
 	return view('food');
 });
@@ -87,4 +95,3 @@ Route::get('/details', function(){
 });
 
 Auth::routes();
-

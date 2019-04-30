@@ -129,10 +129,10 @@
                                     </li>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <form action="tim-kiem.html" method="get">
+                                <form action="{{ route('user.search') }}" method="get">
                                     <div class="form-group">
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8 no_padding_r no_padding_l">
-                                            <input placeholder="Nhập từ khóa...." class="form-control key" type="text" name="keyword"/>
+                                            <input placeholder="Nhập từ khóa...." class="form-control key" type="text" name="name"/>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 no_padding_l no_padding_r">
                                             <button type="submit" class="btn_seach"><i class="fa fa-search"></i></button>
