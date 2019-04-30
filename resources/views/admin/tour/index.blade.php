@@ -37,7 +37,12 @@
               @foreach ($tours as $tours)
               <tr class="odd gradeX">
                 <td> {{$tours-> id}} </td>
-                <td> <img src="{{asset('images') .  '/' .$tours->hinh_anh}}" width="80" height="50" /> </td>
+                @php($images = $tours->hinhAnhs)
+                <td>
+                  @foreach($images as $image)
+                  <img src="{{asset('images') .  '/'.$image->hinh_anh}}" width="80" height="50" />
+                  @endforeach
+                </td>
                 <td> {{$tours-> ten_tour}} </td>
                 <td> {{$tours-> ma_dat_tour}} </td>
                 <td> {{$tours-> thoi_gian}} </td>

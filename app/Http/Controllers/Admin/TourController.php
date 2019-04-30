@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App;
 use App\tour;
 use App\danh_muc;
 use App\Http\Controllers\Controller;
@@ -17,14 +18,16 @@ class TourController extends Controller
     public function create()
     {
         $danhmuc = danh_muc::all();
-        return view('admin.tour.create', compact('danhmuc'));
+        $khuyenmai = App\KhuyenMai::all();
+        $hinhthuc = App\HinhThucTour::all();
+        return view('admin.tour.create', compact('danhmuc','khuyenmai','hinhthuc'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'ten_tour' => 'required',
-            'ma_dat_tour' => 'required',
+            'ma_tour' => 'required',
             'hinh_anh' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'thoi_gian' => 'required',
             'diem_khoi_hanh' => 'required',
@@ -41,9 +44,10 @@ class TourController extends Controller
         request()->hinh_anh->move(public_path('images'), $imageName);
         
         $tour1->ten_tour = $request->ten_tour;
-        $tour1->ma_dat_tour = $request->ma_dat_tour;
-        $tour1->danh_muc_id = $request->danh_muc_id;
-        $tour1->hinh_anh= $imageName;
+        $tour1->ma_tour = $request->ma_tour;
+        $tour1->id_danh_muc = $request->id_danh_muc;
+        $tour1->id_khuyen_mai=$request->id_khuyen_mai;
+        $tour1->id_hinh_thuc_tour =$request->id_hinh_thuc;
         $tour1->thoi_gian = $request->thoi_gian;
         $tour1->diem_khoi_hanh = $request->diem_khoi_hanh;
         $tour1->lich_trinh = $request->lich_trinh;
@@ -54,6 +58,12 @@ class TourController extends Controller
         $tour1->phu_luc = $request->phu_luc;
 
         $tour1->save();
+        
+        $hinh_anh = new App\HinhAnh;
+        $hinh_anh->hinh_anh = $imageName;
+        $hinh_anh->image_id = $tour1->id;
+
+        $tour1->hinhAnhs()->save($hinh_anh);
 
         return redirect()->route('tour.index');
     }
@@ -68,19 +78,22 @@ class TourController extends Controller
     {
         $tour1 = tour::where('slug', $slug)->first();
         $danhmuc = danh_muc::all();
-        return view('admin.tour.edit', compact('tour1', 'danhmuc'));
+        $khuyenmai = App\KhuyenMai::all();
+        $hinhthuc = App\HinhThucTour::all();
+        return view('admin.tour.edit', compact('tour1', 'danhmuc','khuyenmai','hinhthuc'));
     }
 
     public function update(Request $request, $slug)
     {
         $validatedData = $request->validate([
             'ten_tour' => 'required',
-            'ma_dat_tour' => 'required|max:50',
+            'ma_tour' => 'required',
+            'hinh_anh' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'thoi_gian' => 'required',
             'diem_khoi_hanh' => 'required',
             'lich_trinh' => 'required',
             'phuong_tien' => 'required',
-            'gia_tour' => 'required|numeric:10',
+            'gia_tour' => 'required',
             'chuong_trinh' => 'required',
             'dieu_kien' => 'required',
             'phu_luc' => 'required',
@@ -88,17 +101,19 @@ class TourController extends Controller
         
         $tour1 = tour::where('slug', $slug)->first();
 
-        if (isset($request->hinh_anh)) {
+        if (!empty($request->hinh_anh)) {
             // Delete the previous image
             $imageName = time() . '.' . request()->hinh_anh->getClientOriginalExtension();
             request()->hinh_anh->move(public_path('images'), $imageName);
             $tour1->hinh_anh = $imageName;
         }
 
-        $tour1->slug = null;
         $tour1->ten_tour = $request->ten_tour;
-        $tour1->ma_dat_tour = $request->ma_dat_tour;
-        $tour1->danh_muc_id = $request->danh_muc_id;
+        $tour1->ma_tour = $request->ma_tour;
+        $tour1->id_danh_muc = $request->id_danh_muc;
+        $tour1->id_khuyen_mai=$request->id_khuyen_mai;
+        $tour1->id_hinh_thuc_tour =$request->id_hinh_thuc;
+        $tour1->thoi_gian = $request->thoi_gian;
         $tour1->diem_khoi_hanh = $request->diem_khoi_hanh;
         $tour1->lich_trinh = $request->lich_trinh;
         $tour1->phuong_tien = $request->phuong_tien;
@@ -108,7 +123,10 @@ class TourController extends Controller
         $tour1->phu_luc = $request->phu_luc;
 
         $tour1->save();
-
+        if (!empty($request->hinh_anh)) {
+            $tour1->hinhAnhs->hinh_anh=$imageName;
+            $tour1->hinhAnhs->save();
+        }
         return redirect()->route('tour.index');
     }
 

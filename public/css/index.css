@@ -1,0 +1,4 @@
+.product_grid:first-child{
+	display:flex;
+	margin: 3px 0;
+}

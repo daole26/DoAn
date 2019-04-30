@@ -35,7 +35,7 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Mã Tour</label>
-							<input type="text" name="ma_dat_tour" placeholder="Mã tour" class="form-control" />
+							<input type="text" name="ma_tour" placeholder="Mã tour" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Hình Ảnh</label>
@@ -44,9 +44,29 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">Danh Mục</label>
 							<div>
-								<select class="form-control" name="danh_muc_id">
+								<select class="form-control" name="id_danh_muc">
 									@foreach ($danhmuc as $danh_mucs)
 									<option value="{{$danh_mucs->id}}">{{$danh_mucs->ten_danh_muc}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sel-khuyenmai">Khuyến mãi</label>
+							<div>
+								<select class="form-control" id="sel-khuyenmai"  name="id_khuyen_mai">
+									@foreach ($khuyenmai as $khuyenmai)
+									<option value="{{$khuyenmai->id}}">{{$khuyenmai->khuyen_mai}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sel-hinhthuc">Hình thức tour</label>
+							<div>
+								<select class="form-control" id="sel-hinhthuc"  name="id_hinh_thuc">
+									@foreach ($hinhthuc as $hinhthuc)
+									<option value="{{$hinhthuc->id}}">{{$hinhthuc->hinh_thuc}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -60,7 +80,7 @@
 							<input type="text" name="diem_khoi_hanh"class="form-control" />
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Lịch Trình</label>
+							<label for="editor0">Lịch Trình</label>
 							<textarea id="editor0" class="form-control" name="lich_trinh" rows="3" placeholder="Lịch Trình ..."></textarea>
 						</div>
 						<div class="form-group">
@@ -72,16 +92,16 @@
 							<input type="text" name="gia_tour" placeholder="Giá tour" class="form-control" />
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Chương Trình</label>
+							<label for="editor1">Chương Trình</label>
 							<textarea id="editor1" name="chuong_trinh" rows="10" cols="80"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Điều Kiện</label>
+							<label for="editor2">Điều Kiện</label>
 							<input type="text" name="dieu_kien" class="form-control" />
 							<textarea id="editor2" name="dieu_kien" rows="10" cols="80"></textarea>
 						</div>
 						<div class="form-group">
-							<label for="exampleInputEmail1">Phụ Lục</label>
+							<label for="editor3">Phụ Lục</label>
 							<input type="text" name="phu_luc" class="form-control" />
 							<textarea id="editor3" name="phu_luc" rows="10" cols="80"></textarea>
 						</div>

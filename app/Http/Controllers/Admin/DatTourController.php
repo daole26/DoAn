@@ -15,7 +15,7 @@ class DatTourController extends Controller
 
     public function create()
     {
-        return view('admin.dattour.create');
+       
     }
 
     public function store(Request $request)
@@ -57,15 +57,11 @@ class DatTourController extends Controller
         $dattour = dat_tour::where('id',$id)->first();
 
         $dattour->ma_dat_tour = $request->ma_dat_tour;
-        $dattour->ngay_dat = $request->ngay_dat;
-        $dattour->thang = $request->thang;
-        $dattour->nam = $request->nam;
-        $dattour->ho_ten_KH = $request->ho_ten_KH;
-        $dattour->email = $request->email;
-        $dattour->dia_chi = $request->dia_chi;
+        $dattour->ngay_dat = strptime($request->ngay_dat.'-'.$request->thang.'-'.$request->nam,'%d-%m-%Y');
         $dattour->nguoi_lon = $request->nguoi_lon;
         $dattour->tre_em = $request->tre_em;
         $dattour->em_be = $request->em_be;
+        $dattour->giam_gia =$request->giam_gia;
         $dattour->ghi_chu = $request->ghi_chu;
         $dattour->user_id = $request->user_id;
       

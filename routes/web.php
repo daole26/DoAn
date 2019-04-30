@@ -24,8 +24,13 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::get('user/destroy/{id}', 'AccountController@destroy')->name('user.destroy');
 
     Route::resource('tour', 'TourController')->except('destroy');
+    Route::resource('hinhthuc','HinhThucTourController')->except('destroy');
+    Route::get('hinhthuc/destroy/{id}','HinhThucTourController@destroy')->name('hinhthuc.destroy');
     Route::resource('tour.comment', 'CommentController')->only(['index', 'destroy']);
 	Route::get('tour/destroy/{slug}', 'TourController@destroy')->name('tour.destroy');
+
+	Route::resource('khuyenmai','KhuyenMaiController')->except('destroy');
+	Route::get('khuyenmai/destroy/{id}','KhuyenMaiController@destroy')->name('khuyenmai.destroy');
 
 	Route::resource('dattour', 'DatTourController')->except('destroy');
 	Route::get('dattour/destroy/{id}', 'DatTourController@destroy')->name('dattour.destroy');

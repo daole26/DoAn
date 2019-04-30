@@ -6,7 +6,17 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Tour</h3>
+          <h3 class="box-title">Khuyến mãi</h3>
+        </div>
+
+        <div class="box-header">
+          <div class="box-title">
+            <div class="btn-group">
+              <a href="{{route('khuyenmai.create')}}" id="sample_editable_1_new" class="btn btn-info btn-flat"> Thêm mới
+                <i class="fa fa-plus"></i>
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- /.box-header -->
@@ -15,30 +25,24 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Mã Tour</th>
-                <th>Khách Hàng</th>
-                <th>Thời Gian</th>
-                <th>Địa Chỉ</th>
-                <th>Ghi Chú</th>
+                <th>Khuyến mãi</th>
                 <th>Hành Động</th>
               </tr>
             </thead>
             <tbody>
-              @foreach ($dattour as $dat_tours)
+              @php($stt=1)
+              @foreach ($khuyenmai as $khuyenmai)
               <tr class="odd gradeX">
-                <td> {{$dattour-> id}} </td>
-                <td> {{$dattour-> tour->ma_dat_tour}} </td>
-                <td> {{$dattour-> ho_ten_KH}} </td>
-                <td> {{$dattour-> ngay_dat}} / {{$dattour-> thang}} / {{$dattour-> nam}} </td>
-                <td> {{$dattour-> dia_chi}} </td>
+                <td> {{$stt++}} </td>
+                <td> {{$khuyenmai-> khuyen_mai}} </td>
                 <td>
-                  <a href="{{route('tour.edit', $dattour->id)}}" class="btn btn-info btn-flat">
+                  <a href="{{route('khuyenmai.edit', $khuyenmai->id)}}" class="btn btn-info btn-flat">
                     <i class="fa fa-pencil"></i>
                   </a>
-                  <a href="{{route('tour.show', $dattour->id)}}" class="btn btn-default btn-flat">
+                  <a href="{{route('khuyenmai.show', $khuyenmai->id)}}" class="btn btn-default btn-flat">
                     <i class="fa fa-eye"></i>
                   </a>
-                  <a class="btn btn-danger btn-flat" data-toggle="confirmation" data-popout="true" data-original-title="Bạn có chắc không ?" href="{{route('dattour.destroy', $dattour->id)}}">
+                  <a class="btn btn-danger btn-flat" data-toggle="confirmation" data-popout="true" data-original-title="Bạn có chắc không ?" href="{{route('khuyenmai.destroy', $khuyenmai->id)}}">
                     <i class="fa fa-trash"></i>
                   </a>
                 </td>

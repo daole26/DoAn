@@ -15,7 +15,8 @@ class DanhMucController extends Controller
 
     public function create()
     {
-        return view('admin.danhmuc.create');
+        $danhmuc =  danh_muc::where('parent_id',null)->get();
+        return view('admin.danhmuc.create',compact('danhmuc'));
     }
 
     public function store(Request $request)
@@ -28,6 +29,12 @@ class DanhMucController extends Controller
 
         $danh_muc_a->ten_danh_muc = $request->ten_danh_muc;
 
+        if(!empty($request->parent_id)){
+            $danh_muc_a->parent_id=$request->parent_id;
+        }else{
+            $danh_muc_a->parent_id=null;
+        }
+
         $danh_muc_a->save();
 
         return redirect()->route('danhmuc.index');
@@ -38,13 +45,20 @@ class DanhMucController extends Controller
         // $id -> FindOrFail($id);
         // slug -> Select * from danhmuc where slug = $slug;
         $danh_muc_a = danh_muc::where('slug', $slug)->first();
-        return view('admin.danhmuc.show', compact('danh_muc_a'));
+        $danh_muc_cha = danh_muc::where('id',$danh_muc_a->parent_id)->first();
+        if(!empty($danh_muc_cha)){
+            $danh_muc_cha = $danh_muc_cha->ten_danh_muc;
+        }else{
+            $danh_muc_cha = null;
+        }
+        return view('admin.danhmuc.show', compact('danh_muc_a','danh_muc_cha'));
     }
 
     public function edit($slug)
     {
         $danh_muc_a = danh_muc::where('slug', $slug)->first();
-        return view('admin.danhmuc.edit', compact('danh_muc_a'));
+        $danhmuc = danh_muc::all();
+        return view('admin.danhmuc.edit', compact('danh_muc_a','danhmuc'));
     }
 
     public function update(Request $request, $slug)
@@ -55,6 +69,11 @@ class DanhMucController extends Controller
         $danh_muc_a = danh_muc::where('slug', $slug)->first();
         
         $danh_muc_a->ten_danh_muc = $request->ten_danh_muc;
+        if(!empty($request->parent_id)){
+            $danh_muc_a->parent_id=$request->parent_id;
+        }else{
+            $danh_muc_a->parent_id=null;
+        }
         $danh_muc_a->slug = null; // Document told that
         $danh_muc_a->save();
         return redirect()->route('danhmuc.index');

@@ -10,7 +10,7 @@ class tour extends Model
     use Sluggable;
 
     protected $fillable = [
-        'ten_tour', 'ma_dat_tour', 'danh_muc_id', 'hinh_anh', 'thoi_gian' , 'diem_khoi_hanh', 'lich_trinh', 'phuong_tien', 'gia_tour', 'chuong_trinh', 'dieu_kien', 'phu_luc', 'slug',
+        'ten_tour', 'ma_tour', 'id_danh_muc', 'thoi_gian' , 'diem_khoi_hanh', 'lich_trinh', 'phuong_tien', 'gia_tour', 'chuong_trinh', 'dieu_kien', 'phu_luc', 'slug',
     ];
 
     public function sluggable()
@@ -23,7 +23,7 @@ class tour extends Model
     }
 
     public function danhmuc(){
-    	return $this->belongsTo('App\danh_muc', 'danh_muc_id', 'id');
+    	return $this->belongsTo('App\danh_muc', 'id_danh_muc', 'id');
     }
 
     public function comments(){

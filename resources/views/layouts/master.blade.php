@@ -39,7 +39,7 @@
     <script src="{{ asset('templates/js/dnx.js') }}" type="text/javascript"></script>
 
 
-    <title>Hà Tĩnh TravelStar hệ thống đặt tour du lịch Việt Nam chất lượng 2019</title>
+    <title>Du lịch My Tour - hệ thống đặt tour du lịch Việt Nam chất lượng 2019</title>
 
     {{-- <script src="../apis.google.com/js/platform.js" async defer></script> --}}
 
@@ -88,9 +88,9 @@
 
             <div class="headerLeft">
                 <div class="boxLogo">
-                    <a title="DANANGXANH" href="{{url('/')}}">
-                        <img alt="Du lịch Đà Nẵng Xanh hệ thống đặt tour du lịch Việt Nam chất lượng 2018"
-                            src="{{ asset('templates/images/logo.png') }}" />
+                    <a title="HaTinh" href="{{url('/')}}">
+                        <img alt="Dịch vụ du lịch My Tour hệ thống đặt tour du lịch Việt Nam chất lượng 2019"
+                            src="{{ asset('templates/images/top.png') }}" />
                     </a>
                 </div>
             </div>

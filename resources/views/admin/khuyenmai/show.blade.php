@@ -7,7 +7,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Chi tiết danh mục</h3>
+					<h3 class="box-title">Chi tiết khuyến mãi</h3>
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
@@ -15,19 +15,13 @@
 					@csrf
 					<div class="box-body">
 						<div class="form-group">
-							<label for="exampleInputEmail1">Tên Danh Mục</label>
-							<p class="form-control-static">  {{$danh_muc_a->ten_danh_muc}}  </p>
+							<label for="exampleInputEmail1">Khuyến mãi</label>
+							<p class="form-control-static">  {{$khuyenmai->khuyen_mai}}  </p>
 						</div>
-						@if(!empty($danh_muc_cha))
-						<div class="form-group">
-							<label for="exampleInputEmail1">Là danh mục con của</label>
-							<p class="form-control-static">  {{$danh_muc_cha}}  </p>
-						</div>
-						@endif
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<a href="{{route('danhmuc.index')}}" class="btn btn-default btn-flat">Quay lại</a>
+						<a href="{{route('khuyenmai.index')}}" class="btn btn-default btn-flat">Quay lại</a>
 					</div>
 				</form>
 			</div>

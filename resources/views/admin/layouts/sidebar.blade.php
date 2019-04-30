@@ -41,6 +41,19 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Hình thức tour</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="{{route('hinhthuc.index')}}"><i class="fa fa-circle-o"></i> Danh Sách</a></li>
+            <li><a href="{{route('hinhthuc.create')}}"><i class="fa fa-circle-o"></i> Thêm Mới</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-dashboard"></i> <span>Tour</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

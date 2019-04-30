@@ -21,8 +21,7 @@ class danh_muc extends Model
             ],
         ];
     }
-
     public function tours(){
-    	return $this->hasMany('App\tour', 'danh_muc_id', 'id');
+        return $this->hasMany('App\tour','id_danh_muc','id');
     }
 }
