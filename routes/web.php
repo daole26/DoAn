@@ -69,15 +69,10 @@ Route::get('/news', function(){
 	return view('news');
 });
 
-Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
-    Route::resource('tour', 'TourController')->only(['index', 'show']);
-    Route::resource('tour.booking', 'BookingController')->middleware('auth')->only(['create']);
-});
-
 Route::group(['namespace' => 'User'], function () {
     Route::get('search','SearchController@getSearch')->name('user.search');
 });
-
+Route::resource('tour','TourController')->only(['index','show']);
 Route::get('/booking', function(){
 	return view('booking');
 });

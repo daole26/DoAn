@@ -30,8 +30,9 @@ function booking() {
         if(!$('#book_tour').valid()) {
             return false;
         }
+        console.log(window.location.href+'/..' + '/api/tour/booking');
         $.ajax({
-            url: window.location.origin + '/api/tour/booking',
+            url: window.location.href+'/..' + '/api/tour/booking',
             dataType: 'json',
             type: 'POST',
             data: data,

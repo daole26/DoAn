@@ -17,7 +17,7 @@
                 <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
                 @endif
                 <span class="product_name">
-                Tour Bà Nà từ Đà Nẵng            </span>
+                {{$tour->ten_tour}}          </span>
             </a>
             <div class="price_box">
                 <p><strong>Mã tour: </strong>{{strtoupper($tour->ma_tour)}}</p>
@@ -78,7 +78,7 @@
                 </div>
 
                 <ul class="product_grid white_bg col-lg-12 no_padding_l no_padding_r">
-                     @foreach($danhmuc_all->tours as $tour)
+                     @foreach($danhmuc_all->indexTours as $tour)
                     <li class=" items col-lg-3 col-md-4 col-sm-4 col-xs-6 col-xs1-12">
                         <a title="Tour ghép Đà Nẵng 3 ngày 2 đêm " href="detail/{{$tour->slug}}">
                             @if(!empty($tour->hinhAnhs[0]))

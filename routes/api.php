@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['namespace' => 'user', 'as' => 'api.'], function () {
+Route::group(['namespace' => 'User', 'as' => 'api.'], function () {
     Route::resource('comment', 'CommentController')->only(['store']);
     Route::get('comment/load_more', 'CommentController@loadMore')->name('load_more_comment');
     Route::post('tour/booking', 'BookingController@store')->name('tour.booking');

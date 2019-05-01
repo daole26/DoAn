@@ -6,7 +6,7 @@ function loadMoreComment() {
             data.index = $('#list-comment').find('.comment-block').length;
 
         $.ajax({
-            url: window.location.origin + '/api/comment/load_more',
+            url: window.location.href+'/../..' + '/api/comment/load_more',
             dataType: 'json',
             type: 'get',
             data: data,
@@ -100,8 +100,6 @@ function loadMoreTour(index = 0) {
     data.index = index;
     $.ajax({
         url: window.location.href +'/..'+ '/api/tour/load_more',
-        //de e sua coi
-        // xem cho url ay , no chua call dc db 
         dataType: 'json',
         type: 'GET',
         data: data,
@@ -153,8 +151,7 @@ function handleLoadTour() {
 }
 $(document).ready(function () {
     var path = window.location.pathname;
-    // alert(patch);
-    if(path.includes('/tour')){
+    if(path.includes('/tour') && !path.includes('/tour/tour')){
             loadMoreTour();
             handleLoadTour();
     }else{

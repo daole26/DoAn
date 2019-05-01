@@ -9,10 +9,7 @@ class IndexController extends Controller
     protected $danhmuc;
     public function __construct()
     {
-        $this->danhmuc = App\danh_muc::where('parent_id',null)->get();
-        for($i=0;$i<count($this->danhmuc);$i++){
-            $this->danhmuc[$i]['child'] = App\danh_muc::where('parent_id',$this->danhmuc[$i]->id)->get();
-        }
+        $this->danhmuc = App\DanhMucClass::getDanhMuc();
     }
     public function index()
     {

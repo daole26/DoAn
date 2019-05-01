@@ -24,4 +24,7 @@ class danh_muc extends Model
     public function tours(){
         return $this->hasMany('App\tour','id_danh_muc','id');
     }
+    public function indexTours(){
+        return $this->tours()->take(20)->orderBy('id','desc');
+    }
 }
