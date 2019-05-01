@@ -18,7 +18,8 @@ class Comment extends Migration
             $table->text('noi_dung');
             $table->unsignedBigInteger('id_users');
             $table->unsignedBigInteger('id_tour');
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
             $table->foreign('id_tour')->references('id')->on('tours')->onDelete('cascade');
             $table->timestamps();
         });

@@ -12,7 +12,7 @@
                 <img src="templates/images/bg_productlabel.png"/>
                 
             </div>
-            <a title="Tour Bà Nà từ Đà Nẵng" href="136-tour-ba-na-tu-da-nang.html">
+            <a title="Tour Bà Nà từ Đà Nẵng" href="{{route('tour.detail',['slug'=>$tour->slug])}}">
                 @if(!empty($tour->hinhAnhs[0]))
                 <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
                 @endif
@@ -37,55 +37,25 @@
     <div class="1" style="margin-bottom: 25px">
         <div style="background: #fff">
             @if($j%2==1)
-                <div class="col-lg-3 no_padding_l no_padding_r tour_hot">
-                    <div class="title_product_1">
-                        <h2>
-                            <a href="du-lich-da-nang-3-ngay-2-dem.html">Mới nhất</a>
-                        </h2>
-                    </div>
-                    <ul>
-                        @for($i=count($danhmuc_all->tours)-1;$i>=count($danhmuc_all->tours)-5 && $i>=0;$i--)
-                            @php($tour = $danhmuc_all->tours[$i])
-                            @if(!empty($tour))
-                            <li>
-                                <div class="col-lg-5">
-                                    <a href="detail/{{$tour->slug}}">
-                                         @if(!empty($tour->hinhAnhs[0]))
-                                            <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
-                                        @endif
-                                    </a>
-                                </div> 
-                                <div class="col-lg-7">
-                                    <a href="202-tour-ha-noi-da-nang-3-ngay-2-dem-bang-may-bay.html">
-                                        {{$tour->ten_tour}}
-                                    </a>
-                                    <span class="product_price">
-                                        {{number_format($tour->gia_tour*1000,0,',','.') }} ₫  
-                                    </span>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            @endif
-                        @endfor
-                    </ul>
-                </div>
+                @include('layouts.newest_tour')
                 @endif
             <div class="col-lg-9 no_padding_r no_padding_l">
                 <div class="title_product">
                     <h2>
-                        <a href="tour-da-nang/{{$danhmuc_all->slug}}">{{$danhmuc_all->ten_danh_muc}}</a>
+                        <a href="{{route('tour.followdanhmuc',['slug'=> $danhmuc_all->slug])}}">{{$danhmuc_all->ten_danh_muc}}</a>
                     </h2>
                 </div>
 
                 <ul class="product_grid white_bg col-lg-12 no_padding_l no_padding_r">
                      @foreach($danhmuc_all->indexTours as $tour)
                     <li class=" items col-lg-3 col-md-4 col-sm-4 col-xs-6 col-xs1-12">
-                        <a title="Tour ghép Đà Nẵng 3 ngày 2 đêm " href="detail/{{$tour->slug}}">
+                        <a title="Tour ghép Đà Nẵng 3 ngày 2 đêm " href="{{route('tour.detail',['slug'=>$tour->slug])}}">
                             @if(!empty($tour->hinhAnhs[0]))
                                 <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
                             @endif
                             <span class="product_name">
-                            {{$tour->ten_tour}}                        </span>
+                                {{$tour->ten_tour}}
+                            </span>
                         </a>
                         <div class="price_box">
                             <p><strong>Mã tour: </strong>{{strtoupper($tour->ma_tour)}}</p>
@@ -94,7 +64,8 @@
                             <p>
                                 <strong>Giá: </strong>
                                 <span class="product_price">
-                                 {{number_format($tour->gia_tour*1000,0,',','.') }} ₫                            </span>
+                                 {{number_format($tour->gia_tour*1000,0,',','.') }} ₫
+                                </span>
                             </p>
                         </div>
                     </li>
@@ -103,38 +74,7 @@
                 </ul>
             </div>
             @if($j%2==0)
-            <div class="col-lg-3 no_padding_l no_padding_r tour_hot">
-                <div class="title_product_1">
-                    <h2>
-                        <a href="du-lich-da-nang-3-ngay-2-dem.html">Mới nhất</a>
-                    </h2>
-                </div>
-                <ul>
-                    @for($i=count($danhmuc_all->tours)-1;$i>=count($danhmuc_all->tours)-5 && $i>=0;$i--)
-                        @php($tour = $danhmuc_all->tours[$i])
-                        @if(!empty($tour))
-                        <li>
-                            <div class="col-lg-5">
-                                <a href="detail/{{$tour->slug}}">
-                                     @if(!empty($tour->hinhAnhs[0]))
-                                        <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
-                                    @endif
-                                </a>
-                            </div> 
-                            <div class="col-lg-7">
-                                <a href="202-tour-ha-noi-da-nang-3-ngay-2-dem-bang-may-bay.html">
-                                    {{$tour->ten_tour}}
-                                </a>
-                                <span class="product_price">
-                                    {{number_format($tour->gia_tour*1000,0,',','.') }} ₫  
-                                </span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </li>
-                        @endif
-                    @endfor
-                </ul>
-            </div>
+            @include('layouts.newest_tour')
             @endif
             <div class="clearfix"></div>
         </div>

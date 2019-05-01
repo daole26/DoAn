@@ -7,7 +7,13 @@
           @foreach($danhmuc as $danhmuc)
             <li>
                 <div>
-                    <a title="Tour trong nước" href="#danhmuc-{{$danhmuc->id}}">
+                    <a title="Tour trong nước" href="
+                    @if(Route::currentRouteName()=='index')
+                      #danhmuc-{{$danhmuc->id}}
+                    @else
+                      {{route('tour.followdanhmuc',['slug'=> $danhmuc->slug])}}
+                    @endif
+                    ">
                        <img src="{{ asset('templates/images/icon/cat'.($i+1).'.png') }}">                        <span>
                        {{$danhmuc->ten_danh_muc}}                       </span>
                        <div class="clearfix"></div>
@@ -18,7 +24,13 @@
                     @if($danhmuc['child']->count()!=0)
                       <ul style="" class="sub_p" id="sup_cate">
                           @foreach($danhmuc['child'] as $child)
-                          <li><a href="#danhmuc-{{$child->id}}">{{$child->ten_danh_muc}}</a></li>
+                          <li><a href="
+                            @if(Route::currentRouteName()=='index')
+                            #danhmuc-{{$child->id}}
+                            @else
+                              {{route('tour.followdanhmuc',['slug'=> $child->slug])}}
+                            @endif
+                          ">{{$child->ten_danh_muc}}</a></li>
                           @endforeach
                       </ul>
                     @endif

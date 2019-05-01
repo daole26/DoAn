@@ -54,7 +54,7 @@ Route::get('activate/{token}', 'Auth\RegisterController@activate')
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 	
-Route::get('/', 'IndexController@index');
+Route::get('/', 'IndexController@index')->name('index');
 Route::get('/tin-tuc/{slug}', 'IndexController@tintuc')->name('index.tintuc');
 
 Route::get('/login', function(){
@@ -73,9 +73,8 @@ Route::group(['namespace' => 'User'], function () {
     Route::get('search','SearchController@getSearch')->name('user.search');
 });
 Route::resource('tour','TourController')->only(['index','show']);
-Route::get('/booking', function(){
-	return view('booking');
-});
+Route::get('/danhmuc/{slug}','TourController@showWithDanhMuc')->name('tour.followdanhmuc');
+Route::get('/detail/{slug}', 'TourController@show')->name('tour.detail');
 
 Route::get('/food', function(){
 	return view('food');
@@ -85,8 +84,8 @@ Route::get('/contact', function(){
 	return view('contact');
 });
 
-Route::get('/details', function(){
-	return view('details');
+Route::get('/dattour/{slug}', function(){
+	return view('dattour');
 });
 
 Auth::routes();

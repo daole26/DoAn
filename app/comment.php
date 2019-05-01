@@ -10,14 +10,9 @@ class comment extends Model
 
     protected $fillable = [
         'noi_dung',
-        'id_users',
-        'id_tour'
+        'name',
+        'email'
     ];
-
-    public function user(){
-    	return $this->belongsTo('App\User', 'id_users', 'id');
-    }
-
     public function tour(){
         return $this->belongsTo('App\tour', 'id_tour', 'id');
     }
