@@ -99,7 +99,9 @@ function loadMoreTour(index = 0) {
     var data = {};
     data.index = index;
     $.ajax({
-        url: window.location.origin + '/api/tour/load_more',
+        url: window.location.href +'/..'+ '/api/tour/load_more',
+        //de e sua coi
+        // xem cho url ay , no chua call dc db 
         dataType: 'json',
         type: 'GET',
         data: data,
@@ -139,21 +141,23 @@ function randomImagePath() {
     return paths[Math.floor(Math.random()*paths.length)];
 }
 function handleLoadTour() {
+    // Ham nay khong chay ts
+    var ch = "abc";
     var count = $('input[name="count"]').val();
     $('.btn_load_more').on('click', function(e) {
         e.preventDefault();
         var index = $('#list-tour').find('.tour-item').length;
+        alert(ch);
         loadMoreTour(index);
     });
 }
 $(document).ready(function () {
-    var patch = window.location.pathname;
-    switch (patch) {
-        case '/tour':
+    var path = window.location.pathname;
+    // alert(patch);
+    if(path.includes('/tour')){
             loadMoreTour();
             handleLoadTour();
-            break;
-    default:
+    }else{
         start();
         comment();
         loadMoreComment();
