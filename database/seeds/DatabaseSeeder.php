@@ -41,15 +41,15 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call([
             ChiTietSeeder::class,
-            CommentSeeder::class,
             DanhMucSeeder::class,
-            DatTourSeeder::class,
             HinhAnhSeeder::class,
             HinhThucTourSeeder::class,
             KhuyenMaiSeeder::class,
             LienHeSeeder::class,
             TinTucSeeder::class,
-            TourSeeder::class
+            TourSeeder::class,
+            CommentSeeder::class,
+            DatTourSeeder::class
         ]);
     }
 }

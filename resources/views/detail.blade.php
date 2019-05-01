@@ -16,10 +16,10 @@
             <div class="col-lg-7 slide_img_product">
                 <div class="clearfix" style="">
                     @if(!empty($tour->hinhAnhs[0]))
-                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                    <ul id="image-gallery" class="gallery list-unstyled">
                         @foreach($tour->hinhAnhs as $image)
-                        <li data-thumb="{{$image->hinh_anh}}">
-                            <img title="bana-hills-1467862246.jpg" alt="bana-hills-1467862246.jpg" src="{{$image->hinh_anh}}" />
+                        <li data-thumb="{{asset('images/'.$image->hinh_anh)}}">
+                            <img title="bana-hills-1467862246.jpg" alt="bana-hills-1467862246.jpg" src="{{asset('images/'.$image->hinh_anh)}}" />
                         </li>
                         @endforeach
                     </ul>
@@ -44,7 +44,7 @@
                         <strong>/ người lớn</strong>
                     </div>
                     <div class="text-center">
-                        <a class="btn_book" href="{{url('details')}}"><input class="btn_booking" type="button" value="Đặt Tour"></a>
+                        <a class="btn_book" href="{{route('dattour',['slug'=>$tour->slug])}}"><input class="btn_booking" type="button" value="Đặt Tour"></a>
                     </div>
                 </div>
 
@@ -98,46 +98,47 @@
                             <h2 class="danhgiatour">Những đánh giá sau tour</h2>
                             <div class="midTab" style="overflow: hidden;">
                                 <div class="form_comment_div">
+
                                     <form action="https://dulichdanangxanh.com/136-tour-ba-na-tu-da-nang" method="post" accept-charset="utf-8" id="form_comment">
-                                    <div class="hidden">
-                                    <input type="hidden" name="token" value="2c9d6440eb024c398a6c45a5aaa5a5e7" />
-                                    </div>                            <input type="hidden" name="vdata[tour_id]" value="{{$tour->id}}"/>
-                                    <div class="form-contact">
-                                        <div class="row">
-                                            <div class="form-group col-md-5 col-sm-6 col-xs-6 sp_xs_12">
-                                                <input type="text" name="vdata[fullname]" class="form-control" placeholder="Họ tên *">
+                                        @csrf
+                                        <input type="hidden" id="cmt-tour-id" name="tour_id" value="{{$tour->id}}"/>
+                                        <div class="form-contact">
+                                            <div class="row">
+                                                <div class="form-group col-md-5 col-sm-6 col-xs-6 sp_xs_12">
+                                                    <input type="text" id="cmt-name" name="name" class="form-control" placeholder="Họ tên *">
+                                                </div>
+                                                <div class="form-group col-md-7 col-sm-6 col-xs-6 sp_xs_12">
+                                                    <input type="text" id="cmt-email" name="email" placeholder="Email *" class="form-control" >
+                                                </div>
                                             </div>
-                                            <div class="form-group col-md-7 col-sm-6 col-xs-6 sp_xs_12">
-                                                <input type="text" name="vdata[email]" placeholder="Email *" class="form-control" >
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="cmt-content" name="content" placeholder="Nôi dung *"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <input id="cmt-submit" type="submit" class="button cmt-button" value="Gửi">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <textarea class="form-control" name="vdata[content]" placeholder="Nôi dung *"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" class="button" style="margin: 0px; padding: 7px 30px; margin-top: 4px; border: none !important; color: #fff;background: #2ac415;" value="Gửi">
-                                        </div>
-                                    </div>
 
 
                                     </form>
-                                    <div class="lcom" style="overflow: hidden;">
-                                        <div style="clear: both; overflow: hidden; border-bottom: 1px dashed #EDEDED; padding-top: 5px;">
-                                            <img src="https://dulichdanangxanh.com/templates/images/user.png" alt="" style="float: left; margin: 5px; border-radius: 7px;">
-                                            <div id="content_comment">
-                                                <div style="overflow: hidden;">   
-                                                    <div class="ten col-lg-6 col-md-6 col-sm-6"><b class="fullname">Lê Hồng Vân</b> - <span class="data">Ngày gửi: Tue/08/2016 12:58</span></div>
-                                                    <div class="danhgia col-lg-6 col-md-6 col-sm-6">Dịch vụ Rất tốt                                                <span class="small-star" style="width: 80px; float: right; height: 16px;"><span class="current-rating" style="width: 80px;height: 24px; float: right;"></span></span></div>
-                                                </div>
-                                                <div style="margin-left: 62px;">Tour Bà Nà ngày 01/09/2014: Cảm ơn công ty Đà Nẵng Xanh đã có những hướng dẫn viên nhiệt tình và chu đáo để những chuyến đi an toàn, hợp lý, mong các bạn phát huy</div>
+                                </div>
+                                    <!-- Comment -->
+                                    <div class="lcom">
+                                        @foreach($tour->commentList as $list)
+                                        <div class="lcom-item">
+                                            <img src="https://dulichdanangxanh.com/templates/images/user.png">
+                                            <div class="row">  
+                                                    <div class="ten col-lg-6 col-md-6 col-sm-6"><b class="fullname">{{$list->name}}</b> - <span class="data">Ngày gửi: {{$list->created_at}}</span></div>
+                                                    <div class="content">{{$list->noi_dung}}</div>
                                             </div>
                                         </div>
+                                        @endforeach
+                                        <!-- /Comment -->
+                                        <h2 class="preloader" style="text-align: center; display: none">
+                                            <img src="https://dulichdanangxanh.com/templates/images/ajax-load.gif"/>
+                                        </h2>
+                                            <input id="btn-xemthem" data-id="{{$tour->id}}" class="danhgiatour" type="button" style="float: right;" value="Xem thêm Đánh giá Tour ">                                     
                                     </div>
-                                    <h2 class="preloader" style="text-align: center; display: none">
-                                        <img src="https://dulichdanangxanh.com/templates/images/ajax-load.gif"/>
-                                    </h2>
-                                        <input class="danhgiatour" type="button" style="float: right;" value="Xem thêm Đánh giá Tour ">                                     
-                                </div>
                             </div><!-- end .midTab -->
                         </div><!-- /.tour_comment -->
                     </div>
@@ -274,4 +275,9 @@
         <div class="clearfix"></div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{asset('js/comment_loadmore.js')}}"></script>
+<script src="{{asset('js/comment_store.js')}}"></script>
 @endsection

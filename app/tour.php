@@ -29,7 +29,9 @@ class tour extends Model
     public function comments(){
     	return $this->hasMany('App\comment', 'id_tour', 'id');
     }
-
+    public function commentList(){
+       return $this->comments()->orderBy('id','desc')->take(5);
+    }
     public function khuyenMai(){
     	return $this->belongsTo(KhuyenMai::class, 'id_khuyen_mai', 'id');
     }

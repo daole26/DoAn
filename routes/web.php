@@ -86,6 +86,6 @@ Route::get('/contact', function(){
 
 Route::get('/dattour/{slug}', function(){
 	return view('dattour');
-});
+})->name('dattour');
 
 Auth::routes();

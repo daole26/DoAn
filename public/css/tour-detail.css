@@ -39,3 +39,33 @@
 .support .content p {
     margin: 0 0 2px;
 }
+.lcom-item{
+    clear: both; 
+    overflow: hidden; 
+    border-bottom: 1px dashed #EDEDED; 
+    padding-top: 5px;
+}
+.lcom{
+    overflow: hidden;
+}
+.lcom-item img{
+    float: left;
+    margin: 5px;
+    border-radius: 7px;
+}
+.lcom-item .content{
+    margin: 20px 0;
+    text-indent: 10px;
+}
+.row:after{
+    content:'';
+    display:block;
+    clear: both;
+}
+.cmt-button{
+    margin: 0px; padding: 7px 30px;
+    margin-top: 4px;
+    border: none !important;
+    color: #fff;
+    background: #2ac415;
+}

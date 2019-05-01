@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['namespace' => 'User', 'as' => 'api.'], function () {
-    Route::resource('comment', 'CommentController')->only(['store']);
-    Route::get('comment/load_more', 'CommentController@loadMore')->name('load_more_comment');
+    Route::post('comment/store', 'CommentController@store')->name('comment.store');
+    Route::get('comment/load_more/{id}/{start}/{limit}', 'CommentController@loadMore')->name('comment.loadmore');
     Route::post('tour/booking', 'BookingController@store')->name('tour.booking');
     Route::get('tour/load_more', 'TourController@loadMore')->name('load_more_tour');
 });
