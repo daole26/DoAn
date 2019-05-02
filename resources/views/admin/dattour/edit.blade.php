@@ -17,21 +17,18 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Thêm mới tour</h3>
+					<h3 class="box-title">Sửa đơn đặt tour</h3>
 				</div>
 				<!-- /.box-header -->
 				<!-- form start -->
-				<form action="{{route('dattour.store')}}" method="POST">
+				<form action="{{route('dattour.update',['id'=>$dattour->id])}}" method="POST">
 					@csrf
+					<input type="hidden" name="_method" value="PUT">
 					<div class="box-body">
-						<div class="form-group">
-							<label for="exampleInputEmail1">Mã Tour</label>
-							<input type="text" name="ma_dat_tour"class="form-control" />
-						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Ngày</label>
 							<div>
-								<select name="ngay" id="ngay" class="form-control">
+								<select name="day" id="ngay" class="form-control">
 									<option value="">Ngày khởi hành</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -70,7 +67,7 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">Tháng</label>
 							<div>
-								<select name="thang" id="thang" class="form-control">
+								<select name="month" id="thang" class="form-control">
 									<option value="">Tháng</option>
 									<option value="1">1</option>
 									<option value="2">2</option>
@@ -90,72 +87,56 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">Năm</label>
 							<div>
-								<select name="nam" id="nam" class="form-control">
+								<select name="year" id="nam" class="form-control">
 									<option value="">Năm</option>
-									<option value="2018">2018</option>
-									<option value="2019">2019</option>
-									<option value="2020">2020</option>
+									@for($i=date('Y')-5;$i<date('Y')+5;$i++)
+									<option value="{{$i}}">{{$i}}</option>
+									@endfor
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Số Người Lớn</label>
 							<div>
-								<select name="nguoi_lon" id="nl" class="form-control">
+								<select name="adults" id="nl" class="form-control">
 									<option value="">Số người lớn</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
+									@for ($i = 1; $i < 11; $i++)
+									<option value="{{$i}}" @if ($dattour->nguoi_lon==$i)
+											{{'selected=""'}}
+										@endif>{{$i}}</option>
+									@endfor
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Trẻ em</label>
 							<div>
-								<select name="tre_em" id="trnho" class="form-control">
+								<select name="children" id="trnho" class="form-control">
 									<option value="">Trẻ em</option>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
+									@for ($i = 1; $i < 11; $i++)
+									<option value="{{$i}}" @if ($dattour->tre_em==$i)
+											{{'selected=""'}}
+										@endif>{{$i}}</option>
+									@endfor
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Em Bé</label>
 							<div>
-								<select name="em_be" id="baby" class="form-control">
+								<select name="baby" id="baby" class="form-control">
 									<option value="">Em bé</option>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
+									@for ($i = 1; $i < 11; $i++)
+									<option value="{{$i}}" @if ($dattour->em_be==$i)
+											{{'selected=""'}}
+										@endif>{{$i}}</option>
+									@endfor
 								</select>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Ghi Chú</label>
-							<input type="text" name="ghi_chu"class="form-control" />
+							<input type="text" name="notes"class="form-control" value="{{$dattour->ghi_chu}}" />
 						</div>
 					</div>
 					<!-- /.box-body -->
@@ -169,4 +150,7 @@
 		</div>
 	</div>
 </section>
+@endsection
+@section('script')
+<script src="{{asset('js/dulich_detail.js')}}"></script>	
 @endsection

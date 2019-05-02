@@ -59,7 +59,7 @@ Route::get('/tin-tuc/{slug}', 'IndexController@tintuc')->name('index.tintuc');
 
 Route::get('/login', function(){
 	return view('login');
-});
+})->name('login');
 
 Route::get('/register', function(){
 	return view('register');
@@ -72,7 +72,7 @@ Route::get('/news', function(){
 Route::group(['namespace' => 'User'], function () {
     Route::get('search','SearchController@getSearch')->name('user.search');
 });
-Route::resource('tour','TourController')->only(['index','show']);
+Route::resource('tour','TourController',['as'=>'user'])->only(['index','show']);
 Route::get('/danhmuc/{slug}','TourController@showWithDanhMuc')->name('tour.followdanhmuc');
 Route::get('/detail/{slug}', 'TourController@show')->name('tour.detail');
 
@@ -84,8 +84,7 @@ Route::get('/contact', function(){
 	return view('contact');
 });
 
-Route::get('/dattour/{slug}', function(){
-	return view('dattour');
-})->name('dattour');
+Route::get('/dattour/{slug}','DatTourController@show')->middleware('checkLogin')->name('dattour');
+Route::post('/xulydattour','DatTourController@dattour')->name('dattour.dattour');
 
 Auth::routes();

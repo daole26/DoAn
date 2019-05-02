@@ -21,7 +21,7 @@ class TourController extends Controller
     public function index()
     {
         $danhmuc=$this->danhmuc;
-        $tour = tour::all();
+        $tour = tour::orderBy('id','desc')->get();
         return view('tour.index',compact('danhmuc','tour'));
     }
 

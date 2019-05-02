@@ -612,6 +612,9 @@ span.product_price {
     padding: 10px 0; 
     background: #fff;
 }
+.tour_hot ul img{
+    width: 100px;
+}
 .tour_hot ul>li{
     padding-bottom: 8px;
     margin-bottom: 8px;

@@ -33,7 +33,7 @@ class tour extends Model
        return $this->comments()->orderBy('id','desc')->take(5);
     }
     public function khuyenMai(){
-    	return $this->belongsTo(KhuyenMai::class, 'id_khuyen_mai', 'id');
+    	return $this->belongsTo(KhuyenMai::class, 'id_khuyen_mai');
     }
 
     public function hinhThucTour(){

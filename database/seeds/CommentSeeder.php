@@ -13,47 +13,45 @@ class CommentSeeder extends Seeder
     {
         DB::table('comments')->insert([
             [
-                'name'=>'test',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'1lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test2',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'2lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test3',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'3lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test4',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'4lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test5',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'5lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test6',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'6lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
             [
-                'name'=>'test7',
-                'email'=>'test@somemail.com',
-                'noi_dung'=>'lorem ipsum dolo sit amet',
+                'id_users'=>2,
+                'noi_dung'=>'7lorem ipsum dolo sit amet',
                 'id_tour'=>1
             ],
+            [
+                'id_users'=>2,
+                'noi_dung'=>'8lorem ipsum dolo sit amet',
+                'id_tour'=>1
+            ]
         ]);
     }
 }

@@ -7,8 +7,6 @@ window.addEventListener('DOMContentLoaded',function(){
         if(this.readyState==4 && this.status==200){
             load = 0
             var data = JSON.parse(this.responseText)
-            document.getElementById('cmt-name').value=''
-            document.getElementById('cmt-email').value=''
             document.getElementById('cmt-content').value=''
             var lcom_item = document.createElement('div')
             lcom_item.classList.add('lcom-item')
@@ -26,13 +24,12 @@ window.addEventListener('DOMContentLoaded',function(){
         if(load==0){
             load = 1
             var id = document.getElementById('cmt-tour-id').value
-            var name = document.getElementById('cmt-name').value
-            var email = document.getElementById('cmt-email').value
+            var id_user = document.getElementById('cmt-name').dataset.id
             var content = document.getElementById('cmt-content').value
             
             xhr.open('POST','../api/comment/store')
             xhr.setRequestHeader('content-type','application/x-www-form-urlencoded')
-            xhr.send('id='+id+'&name='+name+'&email='+email+'&content='+content)
+            xhr.send('id='+id+'&id_user='+id_user+'&content='+content)
         }
     })
 })

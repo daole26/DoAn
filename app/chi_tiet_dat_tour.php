@@ -12,10 +12,10 @@ class chi_tiet_dat_tour extends Model
     ];
 
     public function dattour(){
-    	return $this->belongsToMany('App\dat_tour', 'dat_tour_id', 'id');
+    	return $this->belongsTo('App\dat_tour', 'id_dat_tour', 'id');
     }
 
     public function tour(){
-    	return $this->belongsToMany('App\tour', 'tour_id', 'id');
+    	return $this->belongsTo('App\tour', 'id_tour', 'id');
     }
 }

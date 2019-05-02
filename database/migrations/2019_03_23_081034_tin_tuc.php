@@ -18,6 +18,7 @@ class TinTuc extends Migration
             $table->bigIncrements('id');
             $table->string('tieu_de',255);
             $table->text('noi_dung');
+            $table->integer('loai_tin_tuc');
             $table->string('slug',255);
             $table->timestamps();
         });

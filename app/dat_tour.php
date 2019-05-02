@@ -13,11 +13,11 @@ class dat_tour extends Model
     ];
 
     public function chitietdattour(){
-    	return $this->hasMany('App\chi_tiet_dat_tour', 'dat_tour_id', 'id');
+    	return $this->hasMany('App\chi_tiet_dat_tour', 'id_dat_tour', 'id');
     }
 
     public function users(){
-    	return $this->belongsToMany('App\users', 'user_id', 'id');
+    	return $this->belongsTo('App\User', 'id_users', 'id');
     }
 
 }

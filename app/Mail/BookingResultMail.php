@@ -3,8 +3,8 @@
 namespace App\Mail;
 
 use App\tour;
-use App\Booking;
-use App\BookingDetail;
+use App\dat_tour;
+use App\chi_tiet_dat_tour;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -23,7 +23,7 @@ class BookingResultMail extends Mailable
      *
      * @return void
      */
-    public function __construct(Booking $booking, BookingDetail $bookingDetail, tour $tour)
+    public function __construct(dat_tour $booking, chi_tiet_dat_tour $bookingDetail, tour $tour)
     {
         $this->booking = $booking;
         $this->bookingDetail = $bookingDetail;

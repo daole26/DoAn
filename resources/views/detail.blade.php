@@ -37,7 +37,8 @@
                     <p><strong>Lịch trình:&nbsp;</strong>{{$tour->lich_trinh}}</p>
                     <p><strong>Phương tiện:&nbsp;</strong>{{$tour->phuong_tien}}</p>
                     <p><strong>Hình thức:&nbsp;</strong>{{$tour->hinhThucTour->hinh_thuc}}</p>
-
+                    <p><strong>Khuyến mãi: </strong></p>
+                    <p>{{$tour->khuyenMai->khuyen_mai}}</p>
                     <div class="price_r" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <strong>Giá tour:</strong>
                             <span class="tour_price" itemprop='price' content='{{$tour->gia_tour*1000}}'>{{number_format($tour->gia_tour*1000,0,',','.')}}</span> <span itemprop="priceCurrency" content="VND">vnđ</span> 
@@ -98,29 +99,23 @@
                             <h2 class="danhgiatour">Những đánh giá sau tour</h2>
                             <div class="midTab" style="overflow: hidden;">
                                 <div class="form_comment_div">
-
+                                    @if(Auth::check())
                                     <form action="https://dulichdanangxanh.com/136-tour-ba-na-tu-da-nang" method="post" accept-charset="utf-8" id="form_comment">
                                         @csrf
                                         <input type="hidden" id="cmt-tour-id" name="tour_id" value="{{$tour->id}}"/>
                                         <div class="form-contact">
-                                            <div class="row">
-                                                <div class="form-group col-md-5 col-sm-6 col-xs-6 sp_xs_12">
-                                                    <input type="text" id="cmt-name" name="name" class="form-control" placeholder="Họ tên *">
-                                                </div>
-                                                <div class="form-group col-md-7 col-sm-6 col-xs-6 sp_xs_12">
-                                                    <input type="text" id="cmt-email" name="email" placeholder="Email *" class="form-control" >
-                                                </div>
-                                            </div>
                                             <div class="form-group">
+                                                <label id="cmt-name" for="cmt-content" class="form-comtrol font-weight-bold" data-id="{{Auth::user()->id}}">{{Auth::user()->ten_hien_thi}}</label>
                                                 <textarea class="form-control" id="cmt-content" name="content" placeholder="Nôi dung *"></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <input id="cmt-submit" type="submit" class="button cmt-button" value="Gửi">
                                             </div>
                                         </div>
-
-
                                     </form>
+                                    @else
+                                        <p class="font-weight-bold">Đăng nhập để gửi bình luận</p>
+                                    @endif
                                 </div>
                                     <!-- Comment -->
                                     <div class="lcom">
@@ -128,7 +123,7 @@
                                         <div class="lcom-item">
                                             <img src="https://dulichdanangxanh.com/templates/images/user.png">
                                             <div class="row">  
-                                                    <div class="ten col-lg-6 col-md-6 col-sm-6"><b class="fullname">{{$list->name}}</b> - <span class="data">Ngày gửi: {{$list->created_at}}</span></div>
+                                                    <div class="ten col-lg-6 col-md-6 col-sm-6"><b class="fullname">{{$list->user->ten_hien_thi}}</b> - <span class="data">Ngày gửi: {{$list->created_at}}</span></div>
                                                     <div class="content">{{$list->noi_dung}}</div>
                                             </div>
                                         </div>

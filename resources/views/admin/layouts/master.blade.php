@@ -336,7 +336,7 @@
 <script src="{{asset('admin/dist/js/demo.js')}}"></script>
 
 <!-- SCRIPT -->
-        @yield('script')
+@yield('script')
 <!-- END SCRIPT -->
 </body>
 </html>

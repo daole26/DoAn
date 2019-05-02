@@ -13,8 +13,8 @@ class CommentController extends Controller
         $data  = [];
         foreach($comment as $comment){
             $data_item = [
-                'name' => $comment->name,
-                'date' => $comment->create_at,
+                'name' => $comment->user->ten_hien_thi,
+                'date' => $comment->created_at,
                 'content' => $comment->noi_dung
             ];
             $data[] = $data_item;
@@ -24,14 +24,13 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $comment = new comment;
-        $comment->name = $request->name;
-        $comment->email = $request->email;
+        $comment->id_users=$request->id_user;
         $comment->noi_dung = $request->content;
         $comment->id_tour = $request->id;
         $res = $comment->save();
         if($res){
             return response()->json([
-                'name'=>$comment->name,
+                'name'=>$comment->user->ten_hien_thi,
                 'email'=>$comment->email,
                 'content'=>$comment->noi_dung,
                 'date'=>$comment->created_at->format('Y-m-d H:i:s')
