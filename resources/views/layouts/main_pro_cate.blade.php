@@ -1,32 +1,32 @@
 <div class="main_pro_cate">
   @php
-      $danhmuc = \App\DanhMucClass::getDanhMuc();
+      $__danhmuc = \App\DanhMucClass::getDanhMuc();
   @endphp
-  @if(!empty($danhmuc))
+  @if(!empty($__danhmuc))
     <div class="header_cate"><span class="btn_cat"><i class="fa fa-bars"></i></span>Danh mục</div>
     <div class="product_cate">
         <ul>
           @php($i=0)
-          @foreach($danhmuc as $danhmuc)
+          @foreach($__danhmuc as $__danhmuc)
             <li>
                 <div>
                     <a title="Tour trong nước" href="
                     @if(Route::currentRouteName()=='index')
-                      #danhmuc-{{$danhmuc->id}}
+                      #danhmuc-{{$__danhmuc->id}}
                     @else
-                      {{route('tour.followdanhmuc',['slug'=> $danhmuc->slug])}}
+                      {{route('tour.followdanhmuc',['slug'=> $__danhmuc->slug])}}
                     @endif
                     ">
                        <img src="{{ asset('templates/images/icon/cat'.($i+1).'.png') }}">                        <span>
-                       {{$danhmuc->ten_danh_muc}}                       </span>
+                       {{$__danhmuc->ten_danh_muc}}                       </span>
                        <div class="clearfix"></div>
                    </a>
                     <i class="fa fa-angle-right btn_sup show1"></i>
                     <i style="display: none" class="fa fa-angle-down btn_sup hide1"></i>
                     <div class="clearfix"></div>
-                    @if($danhmuc['child']->count()!=0)
+                    @if($__danhmuc['child']->count()!=0)
                       <ul style="" class="sub_p" id="sup_cate">
-                          @foreach($danhmuc['child'] as $child)
+                          @foreach($__danhmuc['child'] as $child)
                           <li><a href="
                             @if(Route::currentRouteName()=='index')
                             #danhmuc-{{$child->id}}

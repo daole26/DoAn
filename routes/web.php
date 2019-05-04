@@ -32,6 +32,10 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::resource('khuyenmai','KhuyenMaiController')->except('destroy');
 	Route::get('khuyenmai/destroy/{id}','KhuyenMaiController@destroy')->name('khuyenmai.destroy');
 
+	Route::get('hotrotructuyen','HoTroTrucTuyenController@index');
+	Route::post('hotrotructuyen/store','HoTroTrucTuyenController@store')->name('hotro.store');
+	Route::get('hotrotructuyen/destroy/{id}','HoTroTrucTuyenController@destroy')->name('hotro.destroy');
+
 	Route::resource('dattour', 'DatTourController')->except('destroy');
 	Route::get('dattour/destroy/{id}', 'DatTourController@destroy')->name('dattour.destroy');
 
