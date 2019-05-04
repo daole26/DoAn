@@ -8,6 +8,6 @@ class lien_he extends Model
 {
     //
     protected $fillable =[
-    	'ten_cong_ty', 'dia_chi', 'so_dien_thoai', 'email',
+    	'ho_ten','email','tieu_de','noi_dung'
     ];
 }

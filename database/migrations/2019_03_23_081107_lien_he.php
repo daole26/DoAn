@@ -15,10 +15,10 @@ class LienHe extends Migration
     {
         Schema::create('lien_hes', function(Blueprint $table){
             $table->bigIncrements('id');
-            $table->string('ten_cong_ty');
-            $table->string('dia_chi');
-            $table->string('so_dien_thoai');
+            $table->string('ho_ten');
             $table->string('email');
+            $table->string('tieu_de');
+            $table->text('noi_dung');
             $table->timestamps();
         });
     }

@@ -38,27 +38,34 @@ class HoTroTrucTuyenController extends Controller
     public function store(Request $request)
     {
         if(!empty($request->hinh_anh) && !empty($request->ten) && !empty($request->url)){
-            $imageName = time().'.'.request()->hinh_anh->getClientOriginalExtension();
-            request()->hinh_anh->move(public_path('images/hotro'), $imageName);
-            $hotro = new ho_tro_truc_tuyen;
-            $hotro->ten = $request->ten;
-            $hotro->url = $request->url;
-            $hotro->hinh_anh = $imageName;
-            $res = $hotro->save();
-            if($res){
+            \DB::beginTransaction();
+            try{
+                $imageName = time().'.'.request()->hinh_anh->getClientOriginalExtension();
+                request()->hinh_anh->move(public_path('images/hotro'), $imageName);
+                $hotro = new ho_tro_truc_tuyen;
+                $hotro->ten = $request->ten;
+                $hotro->url = $request->url;
+                $hotro->hinh_anh = $imageName;
+                $res = $hotro->save();
+                if($res){
+                    \DB::commit();
                     return response()->json([
-                    'status'=>'ok',
-                    'page'=>'store',
-                    'hinh_anh'=>$imageName,
-                    'ten'=>$hotro->ten,
-                    'url'=>$hotro->url,
-                    'id'=>$hotro->id
-                ]);
-            }else{
-                return response()->json([
-                    'status'=>'fail',
-                    'page'=>'store'
-                ]);
+                        'status'=>'ok',
+                        'page'=>'store',
+                        'hinh_anh'=>$imageName,
+                        'ten'=>$hotro->ten,
+                        'url'=>$hotro->url,
+                        'id'=>$hotro->id
+                    ]);
+                }else{
+                    \DB::rollBack();
+                    return response()->json([
+                        'status'=>'fail',
+                        'page'=>'store'
+                    ]);
+                }
+            }catch(\Exception $e){
+                \DB::rollBack();
             }
         }
         return response()->json([
@@ -109,19 +116,29 @@ class HoTroTrucTuyenController extends Controller
      */
     public function destroy($id)
     {
-        $hinhanh = ho_tro_truc_tuyen::where('id',$id)->first()->hinh_anh;
-        unlink(public_path('images/hotro/'.$hinhanh));
-        $res = ho_tro_truc_tuyen::where('id',$id)->delete();
-        if($res){
+        \DB::beginTransaction();
+        try{
+            $hinhanh = ho_tro_truc_tuyen::where('id',$id)->first()->hinh_anh;
+            if(file_exists(public_path('images/hotro/'.$hinhanh))){
+                unlink(public_path('images/hotro/'.$hinhanh));
+            }
+            $res = ho_tro_truc_tuyen::where('id',$id)->delete();
+            if($res){
+                \DB::commit();
+                return response()->json([
+                    'page'=>'delete',
+                    'status'=>'ok',
+                    'id'=>$id
+                ]);
+            }
+            \DB::rollback();
             return response()->json([
                 'page'=>'delete',
-                'status'=>'ok',
-                'id'=>$id
+                'status'=>'fail'
             ]);
+        }catch(\Exception $e){
+            \DB::rollback();
+            echo $e->getMessage();
         }
-        return response()->json([
-            'page'=>'delete',
-            'status'=>'fail'
-        ]);
     }
 }

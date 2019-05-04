@@ -32,7 +32,7 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::resource('khuyenmai','KhuyenMaiController')->except('destroy');
 	Route::get('khuyenmai/destroy/{id}','KhuyenMaiController@destroy')->name('khuyenmai.destroy');
 
-	Route::get('hotrotructuyen','HoTroTrucTuyenController@index');
+	Route::get('hotrotructuyen','HoTroTrucTuyenController@index')->name('hotro.index');
 	Route::post('hotrotructuyen/store','HoTroTrucTuyenController@store')->name('hotro.store');
 	Route::get('hotrotructuyen/destroy/{id}','HoTroTrucTuyenController@destroy')->name('hotro.destroy');
 
@@ -46,6 +46,9 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 	Route::post('tintuc/edit','TinTucController@postEdit')->name('tintuc.postEdit');
 	Route::get('tintuc/detail/{id}','TinTucController@detail')->name('tintuc.detail');
 	Route::get('tintuc/delete/{id}','TinTucController@delete')->name('tintuc.delete');
+	Route::get('lienhe','LienHeController@index')->name('lienhe.index');
+	Route::get('lienhe/show/{id}','LienHeController@show')->name('lienhe.show');
+	Route::get('lienhe/delete/{id}','LienHeController@destroy')->name('lienhe.destroy');
 });
 
 // ===============================================
@@ -88,5 +91,7 @@ Route::get('/contact', function(){
 
 Route::get('/dattour/{slug}','DatTourController@show')->middleware('checkLogin')->name('dattour');
 Route::post('/xulydattour','DatTourController@dattour')->name('dattour.dattour');
+
+Route::post('lienhe/store','LienHeController@store');
 
 Auth::routes();

@@ -53,7 +53,7 @@
                 </li>
                                                 <li>
                     <i class="fa fa-envelope-o"></i>
-                    <span><a href="mailto:kinhdoanh@danangxanh.com">kinhdoanh@danangxanh.com</a></span>
+                    <span><a href="mailto:daole97@gmail.com">daole97@gmail.com</a></span>
                 </li>
                             </ul>
         </div>
@@ -61,34 +61,38 @@
             <h2 class="title_c">
                 <span>Gửi thông tin cho chúng tôi</span>
             </h2>
-
-            <form action="#" method="post" accept-charset="utf-8" class="form_contact" id="form_contact">
-<div class="hidden">
-<input type="hidden" name="token" value="2c9d6440eb024c398a6c45a5aaa5a5e7" />
-</div>                                    <div class="form-contact">
-                <div class="row">
-                    <div class="form-group col-md-5 col-sm-6 col-xs-12">
-                        <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Họ tên *">
+            <ul id="error" class="text-error">
+                <li></li>
+            </ul>
+            <form action="#" method="post" accept-charset="utf-8" class="form_contact" id="form_contact" data-token="{{csrf_token()}}">                                   
+                <div class="form-contact">
+                    <div class="row">
+                        <div class="form-group col-md-5 col-sm-6 col-xs-12">
+                            <input type="text" name="fullname" id="fullname" class="form-control" placeholder="Họ tên *" required="">
+                        </div>
+                        <div class="form-group col-md-7 col-sm-6 col-xs-12">
+                            <input type="email" name="email" id="email" placeholder="Email *" class="form-control" required="">
+                        </div>
                     </div>
-                    <div class="form-group col-md-7 col-sm-6 col-xs-12">
-                        <input type="text" name="email" id="email" placeholder="Email *" class="form-control" >
+                    <div class="form-group">
+                        <input type="text" name="title" id="title" placeholder="Tiêu đề *" class="form-control" required="">
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="text" name="title" id="title" placeholder="Tiêu đề *" class="form-control" >
-                </div>
-                <div class="form-group">
-                    <textarea name="content" id="content" cols="30" rows="10" class="form-control" placeholder="Nội dung"></textarea>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit"  class="btn_send">Gửi thông tin</button>
-                </div>
+                    <div class="form-group">
+                        <textarea name="content" id="content" cols="30" rows="10" class="form-control" placeholder="Nội dung" required=""></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" id="btn-send"  class="btn_send">Gửi thông tin</button>
+                    </div>
 
-            </div>
+                </div>
 
             </form>             
         </div>
         <div class="clearfix"></div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('js/lienhe_feedback.js')}}"></script>
 @endsection

@@ -104,17 +104,39 @@
         </li>
 
         <li class="treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Tin tức</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active"><a href="{{route('tintuc.index')}}"><i class="fa fa-circle-o"></i> Danh Sách</a></li>
-              <li><a href="{{route('tintuc.insert')}}"><i class="fa fa-circle-o"></i> Thêm Mới</a></li>
-            </ul>
-          </li>
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Tin tức</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="{{route('tintuc.index')}}"><i class="fa fa-circle-o"></i> Danh Sách</a></li>
+            <li><a href="{{route('tintuc.insert')}}"><i class="fa fa-circle-o"></i> Thêm Mới</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Liên hệ</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="{{route('lienhe.index')}}"><i class="fa fa-circle-o"></i> Danh Sách</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Hỗ trợ trực tuyến</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="{{route('hotro.index')}}"><i class="fa fa-circle-o"></i> Danh Sách</a></li>
+          </ul>
+        </li>
 
       </ul>
     </section>
