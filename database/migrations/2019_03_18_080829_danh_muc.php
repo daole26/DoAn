@@ -17,6 +17,7 @@ class DanhMuc extends Migration
             $table->bigIncrements('id');
             $table->string('ten_danh_muc');
             $table->string('slug');
+            $table->unsignedbigInteger('parent_id')->nullable();
             $table->timestamps();
         });
         

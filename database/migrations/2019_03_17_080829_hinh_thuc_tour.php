@@ -16,6 +16,7 @@ class HinhThucTour extends Migration
         Schema::create('hinh_thuc_tours', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('hinh_thuc');
+            $table->string('slug');
             $table->timestamps();
         });
         

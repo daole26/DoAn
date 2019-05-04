@@ -12,11 +12,11 @@ class HinhThucTourSeeder extends Seeder
     public function run()
     {
         DB::table('hinh_thuc_tours')->insert([
-            ['hinh_thuc'=>'Tour riêng'],
-            ['hinh_thuc'=>'Tour ghép'],
-            ['hinh_thuc'=>'Tour ghép đoàn'],
-            ['hinh_thuc'=>'Tour ghép tiêu chuẩn'],
-            ['hinh_thuc'=>'Tour nước ngoài']
+            ['hinh_thuc'=>'Tour riêng','slug'=>'tour-rieng'],
+            ['hinh_thuc'=>'Tour ghép','slug'=>'tour-ghep'],
+            ['hinh_thuc'=>'Tour ghép đoàn','slug'=>'tour-ghep-doan'],
+            ['hinh_thuc'=>'Tour ghép tiêu chuẩn','slug'=>'tour-ghep-tieu-chuan'],
+            ['hinh_thuc'=>'Tour nước ngoài','slug'=>'tour-nuoc-ngoai']
         ]);
     }
 }

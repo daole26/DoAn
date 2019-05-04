@@ -18,7 +18,6 @@ class ChiTietDatTour extends Migration
             $table->unsignedBigInteger('id_tour');
             $table->unsignedBigInteger('id_dat_tour');
             $table->decimal('gia_tien');
-            $table->text('ghi_chu')->nullable();
             $table->foreign('id_tour')->references('id')->on('tours')->onDelete('cascade');
             $table->foreign('id_dat_tour')->references('id')->on('dat_tours')->onDelete('cascade');
             $table->timestamps();

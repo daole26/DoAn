@@ -21,18 +21,29 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">Hình Ảnh</label>
 							<p class="form-control-static">
-							<img height="150" width="240" src="{{asset('images') .'/' . $tour1->hinh_anh}}" />
+							<img height="150" width="240" src="{{asset('images') .'/' . $tour1->hinhAnhs[0]->hinh_anh}}" />
 							</p>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Mã Tour</label>
-							<p class="form-control-static">  {{$tour1->ma_dat_tour}}  </p>
+							<p class="form-control-static">  {{$tour1->ma_tour}}  </p>
 						</div>
 						<!-- category -->
 						<div class="form-group">
 							<label for="exampleInputEmail1">Thời Gian</label>
 							<p class="form-control-static">  {{$tour1->thoi_gian}}  </p>
 						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">Hình thức tour</label>
+							<p class="form-control-static">  {{$tour1->hinhThucTour->hinh_thuc}}  </p>
+						</div>
+
+						<div class="form-group">
+							<label for="exampleInputEmail1">Khuyến mãi</label>
+							<p class="form-control-static">  {{$tour1->khuyenMai->khuyen_mai}}  </p>
+						</div>
+
 						<div class="form-group">
 							<label for="exampleInputEmail1">Điểm Khởi Hành</label>
 							<p class="form-control-static">  {{$tour1->diem_khoi_hanh}}  </p>
@@ -51,15 +62,15 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Chương Trình</label>
-							<p class="form-control-static">  {{$tour1->chuong_trinh}}  </p>
+							<p class="form-control-static">  {!!$tour1->chuong_trinh!!}  </p>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Điều Kiện</label>
-							<p class="form-control-static">  {{$tour1->dieu_kien}}  </p>
+							<p class="form-control-static">  {!!$tour1->dieu_kien!!}  </p>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Phụ Lục</label>
-							<p class="form-control-static">  {{$tour1->phu_luc}}  </p>
+							<p class="form-control-static">  {!!$tour1->phu_luc!!}  </p>
 						</div>
 					</div>
 					<!-- /.box-body -->

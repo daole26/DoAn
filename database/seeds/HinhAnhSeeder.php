@@ -11,6 +11,10 @@ class HinhAnhSeeder extends Seeder
      */
     public function run()
     {
-        //
+    	DB::table('hinh_anhs')->insert([
+            'image_type'=>'tour',
+            'image_id'=>1,
+            'hinh_anh'=>'1556708337.jpg'
+        ]);
     }
 }

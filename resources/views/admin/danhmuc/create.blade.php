@@ -28,6 +28,15 @@
 							<label for="exampleInputEmail1">Tên Danh Mục</label>
 							<input type="text" name="ten_danh_muc" placeholder="Tên danh mục" class="form-control" />
 						</div>
+						<div class="form-group">
+							<label for="sel-parent">Danh mục cha</label>
+							<select name="parent_id" id="sel-parent">
+								<option value="0">Không có</option>
+								@foreach($danhmuc as $danhmuc)
+								<option value="{{$danhmuc->id}}">{{$danhmuc->ten_danh_muc}}</option>
+								@endforeach
+							</select>
+						</div>
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">

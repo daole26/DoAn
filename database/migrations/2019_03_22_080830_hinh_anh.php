@@ -15,8 +15,7 @@ class HinhAnh extends Migration
     {
         Schema::create('hinh_anhs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('image_id');
-            $table->string('image_type',16);
+            $table->morphs('image');
             $table->string('hinh_anh',255);
             $table->timestamps();
         });

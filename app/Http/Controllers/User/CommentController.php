@@ -1,56 +1,41 @@
 <?php
 
 namespace App\Http\Controllers\User;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\comment;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function loadMore($id,$start,$limit)
+    {
+        $comment = comment::where('id_tour',$id)->orderBy('id','desc')->skip($start)->take($limit)->get();
+        $data  = [];
+        foreach($comment as $comment){
+            $data_item = [
+                'name' => $comment->user->ten_hien_thi,
+                'date' => $comment->created_at,
+                'content' => $comment->noi_dung
+            ];
+            $data[] = $data_item;
+        }
+        return response()->json($data);
+    }
     public function store(Request $request)
     {
-        try {
-            $comment = comment::create($request->all()['vdata']);
+        $comment = new comment;
+        $comment->id_users=$request->id_user;
+        $comment->noi_dung = $request->content;
+        $comment->id_tour = $request->id;
+        $res = $comment->save();
+        if($res){
             return response()->json([
-                    'noi_dung' => $comment->noi_dung,
-                    'ten_hien_thi' => $comment->user->ten_hien_thi,
-                    'comment_at' => $comment->comment_at,
-                ], 200);
-        } catch (\Exception $e) {
-            \Log::error($e);
-            return response()->json('Xảy ra lỗi không xác định', 500);
+                'name'=>$comment->user->ten_hien_thi,
+                'email'=>$comment->email,
+                'content'=>$comment->noi_dung,
+                'date'=>$comment->created_at->format('Y-m-d H:i:s')
+            ]);
         }
-    }
-
-    /**
-     * Load more comments
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function loadMore(Request $request) {
-        try {
-            $comments = comment::join('users', 'users.id', '=', 'comments.id_users')
-                ->select([
-                    'comments.noi_dung','users.ten_hien_thi',
-                    \DB::raw('DATE_FORMAT(comments.created_at,"' . '%H:%i %d-%m-%Y' . '") as comment_at_time')
-                ])->where('comments.id_tour', $request->id_tour)
-                ->orderBy('comments.created_at', 'DESC')
-                ->skip($request->index)
-                ->limit(3)
-                ->get();
-            return response()->json($comments, 200);
-        } catch(\Exception $e) {
-            \Log::error($e);
-            return response()->json('Error', 500);
-        }
+        return '';
     }
 }

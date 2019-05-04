@@ -16,10 +16,10 @@ class Comment extends Migration
         Schema::create('comments', function( Blueprint $table){
             $table->bigIncrements('id');
             $table->text('noi_dung');
-            $table->unsignedBigInteger('id_users');
             $table->unsignedBigInteger('id_tour');
-            $table->foreign('id_users')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('id_users');
             $table->foreign('id_tour')->references('id')->on('tours')->onDelete('cascade');
+            $table->foreign('id_users')->references('id')->on('users');
             $table->timestamps();
         });
     }

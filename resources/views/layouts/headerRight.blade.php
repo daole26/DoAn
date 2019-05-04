@@ -17,15 +17,14 @@
                             </li>
 
                             <li 1 >
-                                <a  href="{{url('news')}}">
+                                <a  href="javascript:void(0)">
                                     <p>Tin tức</p>
                                     <img width="40px" src="{{ asset('templates/images/tin-tuc1467729692.png') }}"/>
                                 </a>
                                 <ul class="nav_sub">
                                     <li class="top"></li>
-                                    <li><a href="tin-tuc/tin-tuc-khuyen-mai.html">Tin tức khuyến mãi</a></li>
-                                    <li><a href="tin-tuc/tin-tuc-du-lich.html">Tin tức du lịch</a></li>
-                                    <li><a href="tin-tuc/homestay-danh-cho-ban.html">Homestay dành cho bạn</a></li>
+                                    <li><a href="{{url('khuyenmai')}}">Tin tức khuyến mãi</a></li>
+                                    <li><a href="{{url('news')}}">Tin tức du lịch</a></li>
                                 </ul>
                             </li>
                             <li 0 >
@@ -129,10 +128,10 @@
                                     </li>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <form action="tim-kiem.html" method="get">
+                                <form action="{{ route('user.search') }}" method="get">
                                     <div class="form-group">
                                         <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8 no_padding_r no_padding_l">
-                                            <input placeholder="Nhập từ khóa...." class="form-control key" type="text" name="keyword"/>
+                                            <input placeholder="Nhập từ khóa...." class="form-control key" type="text" name="name"/>
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 no_padding_l no_padding_r">
                                             <button type="submit" class="btn_seach"><i class="fa fa-search"></i></button>

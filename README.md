@@ -26,3 +26,14 @@ The package will automatically register its service provider.
   **source slugger:** 
   -- https://github.com/cviebrock/eloquent-sluggable#installation
   -- https://github.com/UniSharp/laravel-ckeditor/blob/master/README.md
+
+  **Queue start**
+  - Start queue in background.
+  ```
+  php artisan queue:work --tries=2 &
+  ```
+
+  **Email function**
+  - Copy .env.exmaple to .env.
+  - Start queue.
+  - Use http://www.yopmail.com/en/ to testing email function.

@@ -10,7 +10,7 @@ class tour extends Model
     use Sluggable;
 
     protected $fillable = [
-        'ten_tour', 'ma_dat_tour', 'danh_muc_id', 'hinh_anh', 'thoi_gian' , 'diem_khoi_hanh', 'lich_trinh', 'phuong_tien', 'gia_tour', 'chuong_trinh', 'dieu_kien', 'phu_luc', 'slug',
+        'ten_tour', 'ma_tour', 'id_danh_muc', 'thoi_gian' , 'diem_khoi_hanh', 'lich_trinh', 'phuong_tien', 'gia_tour', 'chuong_trinh', 'dieu_kien', 'phu_luc', 'slug',
     ];
 
     public function sluggable()
@@ -23,14 +23,32 @@ class tour extends Model
     }
 
     public function danhmuc(){
-    	return $this->belongsTo('App\danh_muc', 'danh_muc_id', 'id');
+    	return $this->belongsTo('App\danh_muc', 'id_danh_muc', 'id');
     }
 
     public function comments(){
     	return $this->hasMany('App\comment', 'id_tour', 'id');
     }
+    public function commentList(){
+       return $this->comments()->orderBy('id','desc')->take(5);
+    }
+    public function khuyenMai(){
+    	return $this->belongsTo(KhuyenMai::class, 'id_khuyen_mai');
+    }
+
+    public function hinhThucTour(){
+    	return $this->belongsTo(HinhThucTour::class, 'id_hinh_thuc_tour', 'id');
+    }
 
     public function chi_tiet_dat_tour(){
     	return $this->hasMany('App\chi_tiet_dat_tour', 'id_tour', 'id');
+    }
+    public function hinhAnhs()
+    {
+        return $this->morphMany(HinhAnh::class, 'image');
+    }
+    public function searchTour($name)
+    {
+        return $this->where('ten_tour','like','%'.$name.'%')->get();
     }
 }

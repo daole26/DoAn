@@ -9,16 +9,6 @@
           <h3 class="box-title">Tour</h3>
         </div>
 
-        <div class="box-header">
-          <div class="box-title">
-            <div class="btn-group">
-              <a href="{{route('dattour.create')}}" id="sample_editable_1_new" class="btn btn-info btn-flat"> Thêm mới
-                <i class="fa fa-plus"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
         <!-- /.box-header -->
         <div class="box-body">
           <table id="example1" class="table table-bordered table-striped">
@@ -34,18 +24,20 @@
               </tr>
             </thead>
             <tbody>
-              @foreach ($dattour as $dat_tours)
+              @foreach ($dattours as $dattour)
+              
               <tr class="odd gradeX">
-                <td> {{$dattour-> id}} </td>
-                <td> {{$dattour-> tour->ma_dat_tour}} </td>
-                <td> {{$dattour-> ho_ten_KH}} </td>
-                <td> {{$dattour-> ngay_dat}} / {{$dattour-> thang}} / {{$dattour-> nam}} </td>
-                <td> {{$dattour-> dia_chi}} </td>
+                <td> {{$dattour->id}} </td>
+                <td> {{$dattour->ma_dat_tour}} </td>
+                <td> {{$dattour->users->ten_hien_thi}} </td>
+                <td> {{$dattour->ngay_khoi_hanh}} </td>
+                <td> {{$dattour->diachi}} </td>
+              <td>  {{$dattour->ghi_chu}}</td>
                 <td>
-                  <a href="{{route('tour.edit', $dattour->id)}}" class="btn btn-info btn-flat">
+                  <a href="{{route('dattour.edit', $dattour->id)}}" class="btn btn-info btn-flat">
                     <i class="fa fa-pencil"></i>
                   </a>
-                  <a href="{{route('tour.show', $dattour->id)}}" class="btn btn-default btn-flat">
+                  <a href="{{route('dattour.show', $dattour->id)}}" class="btn btn-default btn-flat">
                     <i class="fa fa-eye"></i>
                   </a>
                   <a class="btn btn-danger btn-flat" data-toggle="confirmation" data-popout="true" data-original-title="Bạn có chắc không ?" href="{{route('dattour.destroy', $dattour->id)}}">

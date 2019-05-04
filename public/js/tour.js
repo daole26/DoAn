@@ -1,5 +1,34 @@
+function loadMoreComment() {
+    $('#load_more_comment').click(function(e) {
+        e.preventDefault();
+            var data = {};
+            data.id_tour = $('input[name="id_tour"]').val();
+            data.index = $('#list-comment').find('.comment-block').length;
 
-$(document).ready(function () {
+        $.ajax({
+            url: window.location.href+'/../..' + '/api/comment/load_more',
+            dataType: 'json',
+            type: 'get',
+            data: data,
+            beforeSend: function() {
+                $('.preloader').show();
+            },
+            success: function (data) {
+                $('.preloader').hide();
+                $.each(data, function(key, ele) {
+                    let comment = $('#comment-clone').clone(true);
+                    $(comment).removeAttr('id');
+                    $(comment).css('display', 'block');
+                    $(comment).find('.fullname').html(ele.ten_hien_thi);
+                    $(comment).find('.content').html(ele.noi_dung);
+                    $(comment).find('.comment_at').html(ele.comment_at_time);
+                    $('#list-comment').append(comment);
+                });
+            }
+        });
+    });
+}
+function start() {
     setTimeout(function() {
         $("#content-slider").lightSlider({
             loop: true,
@@ -32,36 +61,8 @@ $(document).ready(function () {
             "captcha": "Nhập mã bảo vệ"
         }
     });
-
-
-    $("#xemthem").validate({
-        rules: {
-        },
-        messages: {
-        }
-        , submitHandler: function (form) {
-            dataString = $("#xemthem").serialize();
-            $.ajax({
-                type: "POST",
-                url: base_url + 'api/getcomment',
-                data: dataString,
-                dataType: "json",
-                beforeSend: function () {
-                    $('.preloader').show();
-                },
-                success: function (data) {
-                    $('.preloader').hide();
-                    $('div.lcom').append(data.html);
-                    $("#offset").val(data.offset);
-                    if (data.offset > data.total) {
-                        $("#xemthem").hide();
-                    }
-                }
-            });
-        }
-    });
-
-    // ----------------Write comment-------------------
+}
+function comment() {
     $('#form_comment input[type="button"]').click(function(e) {
         e.preventDefault();
         var url = $(this).closest('form').attr('action');
@@ -92,33 +93,70 @@ $(document).ready(function () {
                 }
             });
     });
-    // ----------------Load more comment-------------------
-    $('#load_more_comment').click(function(e) {
-        e.preventDefault();
-            var data = {};
-            data.id_tour = $('input[name="id_tour"]').val();
-            data.index = $('#list-comment').find('.comment-block').length;
-
-            $.ajax({
-                url: window.location.origin + '/api/comment/load_more',
-                dataType: 'json',
-                type: 'get',
-                data: data,
-                beforeSend: function() {
-                    $('.preloader').show();
-                },
-                success: function (data) {
-                    $('.preloader').hide();
-                    $.each(data, function(key, ele) {
-                        let comment = $('#comment-clone').clone(true);
-                        $(comment).removeAttr('id');
-                        $(comment).css('display', 'block');
-                        $(comment).find('.fullname').html(ele.ten_hien_thi);
-                        $(comment).find('.content').html(ele.noi_dung);
-                        $(comment).find('.comment_at').html(ele.comment_at_time);
-                        $('#list-comment').append(comment);
-                    });
-                }
+}
+function loadMoreTour(index = 0) {
+    var count = $('input[name="count"]').val();
+    var data = {};
+    data.index = index;
+    $.ajax({
+        url: window.location.href +'/..'+ '/api/tour/load_more',
+        dataType: 'json',
+        type: 'GET',
+        data: data,
+        beforeSend: function() {
+            $('.preloader').show();
+        },
+        success: function(data) {
+            $('.preloader').hide();
+            $.each(data, function(index, value) {
+                let item = $('#item-clone').clone(true);
+                $(item).find('a').attr('title', value.ten_tour).attr('href', window.location + '/' + value.slug);
+                $(item).find('.tour_image').attr('title', value.ten_tour).attr('alt', value.ten_tour).attr('src', value.hinh_anhs.length ? value.hinh_anhs[0].hinh_anh : randomImagePath());
+                $(item).find('.product_name').html(value.ten_tour);
+                $(item).find('.ma_tour').html(value.ma_tour);
+                $(item).find('.thoi_gian').html(value.thoi_gian);
+                $(item).find('.hinh_thuc_tour').html(value.hinh_thuc_tour.hinh_thuc);
+                $(item).find('.product_price').html(value.gia_tour + 'vnđ');
+                $(item).removeAttr('id');
+                $(item).css('display', 'list-item');
+                $('#list-tour').append(item);
             });
+            if ($('#list-tour').find('.tour-item').length == count) {
+                $('.btn_load_more').hide();
+            }
+        }
     });
+};
+function randomImagePath() {
+    var paths = [
+        'https://dulichdanangxanh.com/data/tour/500/cau-truong-tien-1467988001.jpg',
+        'https://dulichdanangxanh.com/data/tour/500/hue5-1468077225.jpg',
+        'https://dulichdanangxanh.com/data/tour/500/ba-na-hills-1467989050.jpg',
+        'https://dulichdanangxanh.com/data/tour/500/da-nang3-1468080329.jpg',
+        'https://dulichdanangxanh.com/data/tour/500/cu-lao-cham17-1468353285.jpg',
+        'https://dulichdanangxanh.com/data/tour/500/da-nang6-1468358169.jpg',
+    ];
+    return paths[Math.floor(Math.random()*paths.length)];
+}
+function handleLoadTour() {
+    // Ham nay khong chay ts
+    var ch = "abc";
+    var count = $('input[name="count"]').val();
+    $('.btn_load_more').on('click', function(e) {
+        e.preventDefault();
+        var index = $('#list-tour').find('.tour-item').length;
+        alert(ch);
+        loadMoreTour(index);
+    });
+}
+$(document).ready(function () {
+    var path = window.location.pathname;
+    if(path.includes('/tour') && !path.includes('/tour/tour')){
+            loadMoreTour();
+            handleLoadTour();
+    }else{
+        start();
+        comment();
+        loadMoreComment();
+    }
 });

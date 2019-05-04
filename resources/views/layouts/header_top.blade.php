@@ -6,34 +6,23 @@
                         <span class="top_support" id="bar_support"><i class="fa fa-support">&nbsp;&nbsp;</i>Hỗ trợ trực tuyến <i class="fa fa-chevron-down"></i></span>
                         <div id="support">
                             <div class="content_sup" id="content_sup">
-
+                                @php
+                                    $_hotro = App\ho_tro_truc_tuyen::all();
+                                @endphp
+                                @foreach($_hotro as $_hotro)
                                 <div class="row_sup">
                                     <div class="avt">
-                                        <img width="100%" src="{{ asset('data/support/mr-trung1.jpg') }}"/>
+                                        <img width="100%" src="{{ asset('images/hotro/'.$_hotro->hinh_anh) }}"/>
                                     </div>
                                     <div class="content">
-                                        <p class="name">Mr Trung</p>
+                                        <p class="name">{{$_hotro->ten}}</p>
                                         <span>
-                                            <a href="skype:#?chat" ><img src="{{ asset('data/images/chatbutton_12px.png') }}" alt="Mr Trung"  ></a>
+                                            <a href="{{$_hotro->url}}" ><span class="fa fa-skype"> Skype</span></a>
                                         </span>
-                                        <span>0974 818 106</span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
-
-                                <div class="row_sup">
-                                    <div class="avt">
-                                        <img width="100%" src="{{ asset('data/support/ms-cao-phuong.png') }}"/>
-                                    </div>
-                                    <div class="content">
-                                        <p class="name">Ms Cao Phương</p>
-                                        <span>
-                                            <a href="skype:caophuong97?chat" ><img src="{{ asset('data/images/chatbutton_12px.png') }}" alt="Ms Cao Phương"  ></a>
-                                        </span>
-                                        <span>0913 818 107</span>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+                                @endforeach
                             </div>
 
                         </div>

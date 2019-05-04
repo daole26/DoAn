@@ -8,20 +8,20 @@
                     <div class="col-lg-6">
                         <!--Box-->
                         <div class="boxItem">
-                            <p><span style="color:#FFFFFF"><strong>CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DICH VỤ DU LỊCH ĐÀ NẴNG XANH</strong><br />
-                                Địa chỉ: 376 Nguyễn Tri Phương, P.Hòa Thuận Tây, Q.Hải Châu, TP.Đà Nẵng<br />
+                            <p><span style="color:#FFFFFF"><strong>CÔNG TY CỔ PHẦN THƯƠNG MẠI VÀ DICH VỤ DU LỊCH MY TOUR</strong><br />
+                                Địa chỉ: Số 98, Đường Phan Đình Giót, TP. Hà Tĩnh<br />
                                 Điện thoại: (+84-236) 247.5555 - (+84-236) 650.6789<br />
-                                Số GPKD: 0401406208 Sở KH&amp;ĐT Đà Nẵng cấp ngày 26/01/2011<br />
-                                Số GPKD Lữ hành Quốc tế: 48-145/2017/TCDL-GPLHQT<br />
-                                Email phòng kinh doanh: kinhdoanh@danangxanh.com<br />
-                                Email ý kiến phản ảnh dịch vụ: info@danangxanh.com<br />
+                                Số GPKD: 3001560190 Sở KH&amp;ĐT HÀ TĨNH cấp ngày 26/01/2012<br />
+                                <br />
+                                Email phòng kinh doanh: kdmytour@gmail.com<br />
+                                Email ý kiến phản ảnh dịch vụ: infomytour@gmail.com<br />
                                 Hotline phản ánh dịch vụ: 0236 3 616 919<br />
                         </div><!--End Box-->
                     </div>
                     <div class="col-lg-2">
                         <!--Box-->
                         <div class="boxItem">
-                            <h4><strong>ĐÀ NẴNG XANH</strong></h4>
+                            <h4><strong>DỊCH VỤ DU LỊCH MY TOUR</strong></h4>
 
                             <p> </p>
 
@@ -62,7 +62,6 @@
                                 <div class="num_online">467108</div>
                                 <div>Hôm nay: 829</div>
                                 <div>Đang trực tuyến: 5</div>
-
                                 <ul class="social" style="display: none">
                                     <li class="social_icon"><a target="_blank" href="https://https://www.facebook.com/dulichdanang83/"><i class="fb"></a></i></li>
                                     <li class="social_icon"><a target="_blank" href="https://www.twitter.com/demo"><i class="tw"></a></i></li>
@@ -70,7 +69,6 @@
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
-
                             <style type="text/css">
                                 .copy_360{text-align: right; padding-bottom: 10px;}
                                 .num_online{font-size: 20px;letter-spacing:2px; font-family: arial}
@@ -121,8 +119,6 @@
                                     transition: all .2s linear;
                                     -moz-transition: all .2s linear;
                                 }
-
-
                             </style> 
                         </div><!--End Box-->
                     </div>

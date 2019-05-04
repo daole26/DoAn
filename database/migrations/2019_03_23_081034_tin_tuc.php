@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
 class TinTuc extends Migration
 {
     /**
@@ -15,9 +16,10 @@ class TinTuc extends Migration
     {
         Schema::create('tin_tucs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_hinh_anh');
             $table->string('tieu_de',255);
             $table->text('noi_dung');
+            $table->integer('loai_tin_tuc');
+            $table->string('slug',255);
             $table->timestamps();
         });
     }

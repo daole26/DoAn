@@ -34,11 +34,13 @@ window.addEventListener('DOMContentLoaded',function(){
 			}
 			
 		}
+		d_innerText = '<option value="">Ngày</option>'
 		for(var i=1;i<=days;i++){
 			d_innerText += '<option value="'+i+'" >'+i+'</option>'
 			d.innerHTML =d_innerText
 		}
 	}
+	format()
 	m.addEventListener('change',format)
 	y.addEventListener('change',format)
 	
@@ -82,16 +84,17 @@ window.addEventListener('DOMContentLoaded',function(){
 		}
 		str = ''
 		for(var i=stack.length-1;i>=0;i--){
+			if(i==stack.length-1 && stack[i]=='.') continue;
 			str+=stack[i]
 		}
 		return str
 	}
 	dongia =getNumber(dongia)
 	var tinhtien = function(){
-		if(nguoilon.value!='' && trenho.value!=''){
-			var thanhtien = dongia*nguoilon.value+dongia*trenho.value/2
-			price[1].innerText = convertToPriceFormat(thanhtien)
-		}
+		var nl = (nguoilon.value!='')? nguoilon.value:0
+		var trnh = (trenho.value!='')? trenho.value:0
+		var thanhtien = dongia*nl+dongia*trnh/2
+		price[1].innerText = convertToPriceFormat(thanhtien)
 	}
 	trenho.addEventListener('change',tinhtien)
 	nguoilon.addEventListener('change',tinhtien)

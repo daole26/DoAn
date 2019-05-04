@@ -18,6 +18,12 @@
 							<label for="exampleInputEmail1">Tên Danh Mục</label>
 							<p class="form-control-static">  {{$danh_muc_a->ten_danh_muc}}  </p>
 						</div>
+						@if(!empty($danh_muc_cha))
+						<div class="form-group">
+							<label for="exampleInputEmail1">Là danh mục con của</label>
+							<p class="form-control-static">  {{$danh_muc_cha}}  </p>
+						</div>
+						@endif
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">

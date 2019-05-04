@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\dat_tour;
+use App\tour;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -9,41 +10,20 @@ class DatTourController extends Controller
 {
     public function index()
     {
-        $dattour = dat_tour::all();
-        return view('admin.dattour.index', compact('dattour'));
+        $dattours = dat_tour::all();
+        return view('admin.dattour.index', compact('dattours'));
     }
 
     public function create()
     {
-        return view('admin.dattour.create');
-    }
-
-    public function store(Request $request)
-    {
-        $dattour = new dat_tour;
-
-        $dattour->ma_dat_tour = $request->ma_dat_tour;
-        $dattour->ngay_dat = $request->ngay_dat;
-        $dattour->thang = $request->thang;
-        $dattour->nam = $request->nam;
-        $dattour->ho_ten_KH = $request->ho_ten_KH;
-        $dattour->email = $request->email;
-        $dattour->dia_chi = $request->dia_chi;
-        $dattour->nguoi_lon = $request->nguoi_lon;
-        $dattour->tre_em = $request->tre_em;
-        $dattour->em_be = $request->em_be;
-        $dattour->ghi_chu = $request->ghi_chu;
-        $dattour->user_id = $request->user_id;
-      
-        $dattour->save();
-
-        return redirect()->route('dattour.index');
+       
     }
 
     public function show($id)
     {
         $dattour = dat_tour::where('id',$id)->first();
-        return view('admin.dattour.show', compact('dattour'));
+        $tour = tour::where('id',$dattour->chitietdattour[0]->id_tour)->first();
+        return view('admin.dattour.show', compact('dattour','tour'));
     }
 
     public function edit($id)
@@ -55,20 +35,18 @@ class DatTourController extends Controller
     public function update(Request $request, $id)
     {
         $dattour = dat_tour::where('id',$id)->first();
-
-        $dattour->ma_dat_tour = $request->ma_dat_tour;
-        $dattour->ngay_dat = $request->ngay_dat;
-        $dattour->thang = $request->thang;
-        $dattour->nam = $request->nam;
-        $dattour->ho_ten_KH = $request->ho_ten_KH;
-        $dattour->email = $request->email;
-        $dattour->dia_chi = $request->dia_chi;
-        $dattour->nguoi_lon = $request->nguoi_lon;
-        $dattour->tre_em = $request->tre_em;
-        $dattour->em_be = $request->em_be;
-        $dattour->ghi_chu = $request->ghi_chu;
-        $dattour->user_id = $request->user_id;
-      
+        if($request->month!='' && $request->year!='' && $request->day!=''){
+            $ngay_khoi_hanh = date('Y-m-d',mktime(0,0,0,$request->month,$request->day,$request->year));
+            $ngay_dat = $dattour->ngay_dat;
+            if($ngay_dat>$ngay_khoi_hanh){
+                return redirect()->route('dattour.index');
+            }
+            $dattour->ngay_khoi_hanh = $ngay_khoi_hanh;   
+        }
+        $dattour->nguoi_lon = $request->adults;
+        $dattour->tre_em = $request->children;
+        $dattour->em_be = $request->baby;
+        $dattour->ghi_chu = $request->notes;
         $dattour->save();
 
         return redirect()->route('dattour.index');

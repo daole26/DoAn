@@ -31,7 +31,7 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Mã Tour</label>
-							<input type="text" name="ma_dat_tour" value="{{$tour1->ma_dat_tour}}" placeholder="Mã tour" class="form-control" />
+							<input type="text" name="ma_tour" value="{{$tour1->ma_tour}}" placeholder="Mã tour" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Hình Ảnh</label>
@@ -40,12 +40,36 @@
 						<div class="form-group">
 							<label for="exampleInputEmail1">Danh Mục</label>
 							<div>
-								<select class="form-control" name="danh_muc_id">
+								<select class="form-control" name="id_danh_muc">
 									@foreach ($danhmuc as $danh_mucs)
 									<option value="{{$danh_mucs->id}}" 
-										@if($danh_mucs->id == $tour1->danh_muc_id) selected="" 
+										@if($danh_mucs->id == $tour1->id_danh_muc) selected="" 
 										@endif >{{$danh_mucs->ten_danh_muc}}
 									</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sel-khuyenmai">Khuyến mãi</label>
+							<div>
+								<select class="form-control" id="sel-khuyenmai"  name="id_khuyen_mai">
+									@foreach ($khuyenmai as $khuyenmai)
+									<option value="{{$khuyenmai->id}}" 
+										@if($khuyenmai->id == $tour1->id_khuyen_mai) selected="" 
+										@endif >{{$khuyenmai->khuyen_mai}}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="sel-hinhthuc">Hình thức tour</label>
+							<div>
+								<select class="form-control" id="sel-hinhthuc"  name="id_hinh_thuc">
+									@foreach ($hinhthuc as $hinhthuc)
+									<option value="{{$hinhthuc->id}}" 
+										@if($hinhthuc->id == $tour1->id_hinh_thuc_tour) selected="" 
+										@endif >{{$hinhthuc->hinh_thuc}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -72,24 +96,15 @@
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Chương Trình</label>
-							<input type="text" value="{{$tour1->chuong_trinh}}" name="chuong_trinh" class="form-control" />
-							<!-- <form>
-								<textarea id="editor1" name="chuong_trinh" rows="10" cols="80">{{$tour1->chuong_trinh}}</textarea>
-							</form> -->
+							<textarea id="editor1" name="chuong_trinh" rows="10" cols="80">{{$tour1->chuong_trinh}}</textarea>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Điều Kiện</label>
-							<textarea name="dieu_kien" class="form-control">{{$tour1->dieu_kien}}</textarea>
-							<!-- <form>
-								<textarea id="editor2" name="dieu_kien" rows="10" cols="80">{{$tour1->dieu_kien}}</textarea>
-							</form> -->
+							<textarea id="editor2" name="dieu_kien" rows="10" cols="80">{{$tour1->dieu_kien}}</textarea>
 						</div>
 						<div class="form-group">
 							<label for="exampleInputEmail1">Phụ Lục</label>
-							<input type="text" value="{{$tour1->phu_luc}}" name="phu_luc" class="form-control" />
-							<!-- <form>
-								<textarea id="editor3" name="phu_luc" rows="10" cols="80">{{$tour1->phu_luc}}</textarea>
-							</form> -->
+							<textarea id="editor3" name="phu_luc" rows="10" cols="80">{{$tour1->phu_luc}}</textarea>
 						</div>
 						<!-- <div class="form-group">
 							<label for="exampleInputEmail1">Hình Ảnh</label>
@@ -113,8 +128,8 @@
 <script src="{{asset('vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
 <script>
     CKEDITOR.replace('editor1');
-    // CKEDITOR.replaceAll('editor2');
-    // CKEDITOR.replace('editor3');
+    CKEDITOR.replace('editor2');
+    CKEDITOR.replace('editor3');
     // $('textarea').ckeditor();
     $('.textarea').wysihtml5()
 </script>
