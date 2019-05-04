@@ -37,8 +37,8 @@
     <div class="1" style="margin-bottom: 25px">
         <div style="background: #fff">
             @if($j%2==1)
-                @include('layouts.newest_tour')
-                @endif
+            @include('layouts.newest_tour_per_danhmuc')
+            @endif
             <div class="col-lg-9 no_padding_r no_padding_l">
                 <div class="title_product">
                     <h2>
@@ -74,7 +74,7 @@
                 </ul>
             </div>
             @if($j%2==0)
-            @include('layouts.newest_tour')
+            @include('layouts.newest_tour_per_danhmuc')
             @endif
             <div class="clearfix"></div>
         </div>
@@ -84,40 +84,9 @@
     <!-- end product -->
 
     <div class="title_news">
-        <a href="tin-tuc.html">Tin tức</a>
+        <a href="{{url('news')}}">Tin tức</a>
     </div>
-    <div class="news_grid">
-
-        
-        @foreach ($tintucs as $tintuc)
-            <div class="news_items col-lg-20 col-md-3 col-sm-4 col-xs-6 col-xs1-12 n_padding_l_r">
-                @if(($i)%2==0)
-                <div class="img_n">
-                    <a  title="{{$tintuc->tieu_de}}" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">
-                        <img alt="{{$tintuc->tieu_de}}" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"/>
-                    </a>
-                </div>
-                @endif
-                <div class="content_n">
-                    <span class="title_n">
-                        <a class="n_title" title="{{$tintuc->tieu_de}}m" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">{{$tintuc->tieu_de}}</a>
-                    </span>
-                    <p class="des_n">
-                        {!!$tintuc->noi_dung!!}
-                    </p>
-                </div>
-                @if(($i)%2!=0)
-                <div class="img_n">
-                    <a  title="{{$tintuc->tieu_de}}" href="{{route('index.tintuc',['slug'=>$tintuc->slug])}}">
-                        <img alt="{{$tintuc->tieu_de}}" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"/>
-                    </a>
-                </div>
-                @endif
-            </div>
-            @php($i++)
-        @endforeach
-        <div class="clearfix"></div>
-    </div>
+    @include('layouts.tintuc_widget')
 </div>
 </div>
 @endsection

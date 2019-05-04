@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\tour;
 use App\hinh_thuc_tours;
+use App\tin_tuc;
 
 class SearchController extends Controller
 {
@@ -21,7 +22,8 @@ class SearchController extends Controller
     {
     	$name = $request->name;
     	$dataSearch = $this->modelTour->searchTour($name);
-    	$dataTourType = $this->modelHinhThuc->getAll();
-    	return view('user.search', compact('dataSearch', 'dataTourType'));
+		$dataTourType = $this->modelHinhThuc->getAll();
+		$new_tour= tour::orderBy('id','desc')->take(5)->get();
+    	return view('user.search', compact('dataSearch', 'dataTourType','new_tour'));
     }
 }

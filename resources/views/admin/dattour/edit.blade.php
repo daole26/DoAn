@@ -141,7 +141,7 @@
 					</div>
 					<!-- /.box-body -->
 					<div class="box-footer">
-						<button type="submit" class="btn btn-info btn-flat">Thêm</button>
+						<button type="submit" class="btn btn-info btn-flat">Sửa</button>
 						<a href="{{route('dattour.index')}}" class="btn btn-default btn-flat">Quay lại</a>
 					</div>
 				</form>

@@ -25,6 +25,13 @@
 					@csrf
 					<div class="box-body">
 						<div class="form-group">
+							<label for="sel-loaitintuc">Loại tin tức</label>
+							<select name="loai_tin_tuc" id="sel-loaitintuc" class="form-control">
+								<option value="1">Tin tức du lịch</option>
+								<option value="2">Tin tức ẩm thực</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="text-title">Tiêu đề</label>
 							<input type="text" name="tieu_de" placeholder="Tiêu đề" class="form-control" />
                         </div>

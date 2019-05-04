@@ -17,15 +17,14 @@
                             </li>
 
                             <li 1 >
-                                <a  href="{{url('news')}}">
+                                <a  href="javascript:void(0)">
                                     <p>Tin tức</p>
                                     <img width="40px" src="{{ asset('templates/images/tin-tuc1467729692.png') }}"/>
                                 </a>
                                 <ul class="nav_sub">
                                     <li class="top"></li>
-                                    <li><a href="tin-tuc/tin-tuc-khuyen-mai.html">Tin tức khuyến mãi</a></li>
-                                    <li><a href="tin-tuc/tin-tuc-du-lich.html">Tin tức du lịch</a></li>
-                                    <li><a href="tin-tuc/homestay-danh-cho-ban.html">Homestay dành cho bạn</a></li>
+                                    <li><a href="{{url('khuyenmai')}}">Tin tức khuyến mãi</a></li>
+                                    <li><a href="{{url('news')}}">Tin tức du lịch</a></li>
                                 </ul>
                             </li>
                             <li 0 >

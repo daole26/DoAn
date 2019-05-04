@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\dat_tour;
+use App\tour;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class DatTourController extends Controller
     public function show($id)
     {
         $dattour = dat_tour::where('id',$id)->first();
-        return view('admin.dattour.show', compact('dattour'));
+        $tour = tour::where('id',$dattour->chitietdattour[0]->id_tour)->first();
+        return view('admin.dattour.show', compact('dattour','tour'));
     }
 
     public function edit($id)

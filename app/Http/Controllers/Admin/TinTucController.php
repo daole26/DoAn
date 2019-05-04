@@ -35,7 +35,8 @@ class TinTucController extends Controller
         ]);
         $arr_update=[
             'tieu_de'=>$request->tieu_de,
-            'noi_dung'=>$request->noi_dung
+            'noi_dung'=>$request->noi_dung,
+            'loai_tin_tuc'=>$request->loai_tin_tuc
         ];
         $tintuc = App\tin_tuc::where('id',$request->id);
         $tintuc->update($arr_update);
@@ -74,6 +75,7 @@ class TinTucController extends Controller
         $tintuc = new App\tin_tuc;
         $tintuc->tieu_de = $request->tieu_de;
         $tintuc->noi_dung = $request->noi_dung;
+        $tintuc->loai_tin_tuc = $request->loai_tin_tuc;
         $tintuc->save();
         $imageName = time().'.'.$request->hinh_anh->getClientOriginalExtension();
         $request->hinh_anh->move(public_path('images'),$imageName);

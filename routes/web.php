@@ -65,9 +65,9 @@ Route::get('/register', function(){
 	return view('register');
 });
 
-Route::get('/news', function(){
-	return view('news');
-});
+Route::get('/news', 'TinTucController@trangTinTuc');
+Route::get('/tintuc/loadmore/{table}/{start}/{limit}','TinTucController@loadmore');
+Route::get('/khuyenmai','TinTucController@trangKhuyenMai');
 
 Route::group(['namespace' => 'User'], function () {
     Route::get('search','SearchController@getSearch')->name('user.search');
@@ -76,9 +76,7 @@ Route::resource('tour','TourController',['as'=>'user'])->only(['index','show']);
 Route::get('/danhmuc/{slug}','TourController@showWithDanhMuc')->name('tour.followdanhmuc');
 Route::get('/detail/{slug}', 'TourController@show')->name('tour.detail');
 
-Route::get('/food', function(){
-	return view('food');
-});
+Route::get('/food','TinTucController@trangAmThuc');
 
 Route::get('/contact', function(){
 	return view('contact');

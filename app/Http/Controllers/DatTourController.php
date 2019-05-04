@@ -5,16 +5,14 @@ use App\Mail\BookingResultMail;
 use App\tour;
 use App\dat_tour;
 use App\chi_tiet_dat_tour;
-use App\DanhMucClass;
 use Illuminate\Http\Request;
 
 class DatTourController extends Controller
 {
     public function show($slug)
     {
-        $danhmuc = DanhMucClass::getDanhMuc();
         $tour = tour::where('slug',$slug)->first();
-        return view('dattour',compact('danhmuc','tour'));
+        return view('dattour',compact('tour'));
     }
     public function sendMailUser(string $email, dat_tour $booking, chi_tiet_dat_tour $bookingDetail, tour $tour) {
         try {

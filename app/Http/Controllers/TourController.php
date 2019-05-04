@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use App\tour;
 use App\danh_muc;
-use App\DanhMucClass;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -11,7 +10,6 @@ class TourController extends Controller
     protected $danhmuc;
     public function __construct()
     {
-        $this->danhmuc = DanhMucClass::getDanhMuc();
     }
     /**
      * Display a listing of the resource.
@@ -20,18 +18,16 @@ class TourController extends Controller
      */
     public function index()
     {
-        $danhmuc=$this->danhmuc;
         $tour = tour::orderBy('id','desc')->get();
-        return view('tour.index',compact('danhmuc','tour'));
+        return view('tour.index',compact('tour'));
     }
 
     public function showWithDanhMuc($slug)
     {
-        $danhmuc=$this->danhmuc;
         $_danhmuc = danh_muc::where('slug',$slug)->first();
         $id_danhmuc = $_danhmuc->id;
         $tour = tour::where('id_danh_muc',$id_danhmuc)->get();
-        return view('tour.index',compact('danhmuc','tour'));
+        return view('tour.index',compact('tour'));
     }
 
     /**
@@ -63,10 +59,8 @@ class TourController extends Controller
      */
     public function show($slug)
     {
-        $danhmuc = $this->danhmuc;
-        $danhmuc2 = $this->danhmuc;
         $tour = tour::where('slug',$slug)->first();
-        return view('detail',compact('danhmuc','danhmuc2','tour'));
+        return view('detail',compact('tour'));
     }
 
     /**

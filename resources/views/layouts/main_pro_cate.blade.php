@@ -1,4 +1,7 @@
 <div class="main_pro_cate">
+  @php
+      $danhmuc = \App\DanhMucClass::getDanhMuc();
+  @endphp
   @if(!empty($danhmuc))
     <div class="header_cate"><span class="btn_cat"><i class="fa fa-bars"></i></span>Danh mục</div>
     <div class="product_cate">

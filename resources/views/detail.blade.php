@@ -130,7 +130,7 @@
                                         @endforeach
                                         <!-- /Comment -->
                                         <h2 class="preloader" style="text-align: center; display: none">
-                                            <img src="https://dulichdanangxanh.com/templates/images/ajax-load.gif"/>
+                                            <img src="{{url('templates/images/ajax-load.gif')}}"/>
                                         </h2>
                                             <input id="btn-xemthem" data-id="{{$tour->id}}" class="danhgiatour" type="button" style="float: right;" value="Xem thêm Đánh giá Tour ">                                     
                                     </div>
@@ -150,25 +150,7 @@
                 <div class="lb-name">Danh mục tour</div>
             </div>
                                         
-            <div class="cate">
-                <ul>
-                    @foreach($danhmuc2 as $danhmuc2)
-                    <li>
-                        <a title="Tour hằng ngày" href="{{route('tour.followdanhmuc',['slug'=>$danhmuc2->slug])}}">{{$danhmuc2->ten_danh_muc}}</a>
-                        @if(count($danhmuc2['child'])!=0)
-                            <span title="More" class="open" style="display: none"><i class="fa fa-plus plus"></i></span>
-                            <span title="Less" class="exit" ><i class="fa fa-minus minus"></i></span>
-                            <ul class="sub_cate_tour">
-                                @foreach($danhmuc2['child'] as $child)
-                                    <li><a title="Tour Huế" href="{{route('tour.followdanhmuc',['slug'=>$child->slug])}}">{{$child->ten_danh_muc}}</a></li>
-                                @endforeach
-                            </ul>
-                        @endif
-                        <div class="clearfix"></div>
-                    </li>
-                    @endforeach
-                </ul>
-            </div>
+            @include('layouts.sub_pro_cat')
         </div><!--End Box-->
         
         <!--Box-->

@@ -26,6 +26,21 @@
                     <input type="hidden" name="id" value="{{$tintuc->id}}">
 					<div class="box-body">
 						<div class="form-group">
+							<label for="sel-loaitintuc">Loại tin tức</label>
+							<select name="loai_tin_tuc" id="sel-loaitintuc" class="form-control">
+								<option value="1" 
+									@if ($tintuc->loai_tin_tuc==1)
+										selected=""
+									@endif
+								>Tin tức du lịch</option>
+								<option value="2"
+									@if ($tintuc->loai_tin_tuc==2)
+										selected=""
+									@endif
+								>Tin tức ẩm thực</option>
+							</select>
+						</div>
+						<div class="form-group">
 							<label for="text-title">Tiêu đề</label>
                             <input type="text" name="tieu_de" placeholder="Tiêu đề" class="form-control" value="{{$tintuc->tieu_de}}" />
                         </div>

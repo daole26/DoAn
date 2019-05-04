@@ -27,17 +27,20 @@
                     <th>STT</th>
                     <th>Tiêu đề</th>
                     <th>Nội dung</th>
+                    <th>Loại tin tức</th>
                     <th>Hình ảnh</th>
                     <th>Hành Động</th>
                     </tr>
                 </thead>
                 @php($i=1)
+                @php($loaitintuc=['','Du lịch','Ẩm thực'])
                 <tbody>
                     @foreach($tintucs as $tintuc)
                     <tr>
                         <td> {{$i++}} </td>
                         <td> {{$tintuc->tieu_de}} </td>
                         <td>{{mb_substr(strip_tags($tintuc->noi_dung),0,50)}}...</td>
+                        <td>{{$loaitintuc[$tintuc->loai_tin_tuc]}}</td>
                         <td><img width="100px" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}"></td>
                         <td>
                             <a href="{{route('tintuc.edit',['id'=>$tintuc->id])}}" class="btn btn-info btn-flat">

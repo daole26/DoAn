@@ -5,14 +5,12 @@
         </h2>
     </div>
     <ul>
-        @for($i=count($danhmuc_all->tours)-1;$i>=count($danhmuc_all->tours)-5 && $i>=0;$i--)
-            @php($tour = $danhmuc_all->tours[$i])
-            @if(!empty($tour))
+        @foreach($new_tour as $tour)
             <li>
                 <div class="col-lg-5">
                     <a href="detail/{{$tour->slug}}">
                          @if(!empty($tour->hinhAnhs[0]))
-                            <img title="Tour Bà Nà từ Đà Nẵng" alt="Tour Bà Nà từ Đà Nẵng" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
+                            <img title="{{$tour->ten_tour}}" alt="{{$tour->ten_tour}}" src="{{asset('images/'.$tour->hinhAnhs[0]->hinh_anh)}}"/>
                         @endif
                     </a>
                 </div> 
@@ -26,7 +24,6 @@
                 </div>
                 <div class="clearfix"></div>
             </li>
-            @endif
-        @endfor
+        @endforeach
     </ul>
 </div>
