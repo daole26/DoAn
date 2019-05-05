@@ -19,6 +19,7 @@
                                         <span>
                                             <a href="{{$_hotro->url}}" ><span class="fa fa-skype"> Skype</span></a>
                                         </span>
+                                        <span>{{$_hotro->sdt}}</span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
