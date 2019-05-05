@@ -4,6 +4,9 @@ window.addEventListener('DOMContentLoaded',function(){
 	var d = document.getElementById('ngay')
 	var m = document.getElementById('thang')
 	var y = document.getElementById('nam')
+	var day31 = document.getElementById('opt-day-31')
+	var day30 = document.getElementById('opt-day-30')
+	var day29 = document.getElementById('opt-day-29')
 	var _31days=['1','3','5','7','8','10','12']
 	var isLeapYear = function(year){
 		if(!(year % 100)){
@@ -18,26 +21,37 @@ window.addEventListener('DOMContentLoaded',function(){
 	var format = function(){
 		thang = m.value
 		nam = y.value
-		days = 30
-		d_innerText = ''
 		if(thang!=''&& nam!=''){
 			if(_31days.includes(thang)){
-				days=31
+				if(d.childElementCount==29){
+					d.appendChild(day29)
+				}
+				if(d.childElementCount==30){
+					d.appendChild(day30)
+				}
+				if(d.childElementCount==31)
+					d.appendChild(day31)
 			}else{
+				if(d.childElementCount==29){
+					d.appendChild(day29)
+				}
+				if(d.childElementCount==30){
+					d.appendChild(day30)
+				}
+				if(d.childElementCount==32){
+					day31.remove();
+				}
 				if(thang==2){
+					day30.remove();
+					day29.remove();
 					if(isLeapYear(nam)){
-						days=29
-					}else{
-						days=28
+						if(d.childElementCount==29){
+							d.appendChild(day29)
+						}
 					}
 				}
 			}
 			
-		}
-		d_innerText = '<option value="">Ngày</option>'
-		for(var i=1;i<=days;i++){
-			d_innerText += '<option value="'+i+'" >'+i+'</option>'
-			d.innerHTML =d_innerText
 		}
 	}
 	format()

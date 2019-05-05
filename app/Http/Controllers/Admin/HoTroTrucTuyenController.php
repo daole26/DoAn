@@ -46,6 +46,7 @@ class HoTroTrucTuyenController extends Controller
                 $hotro->ten = $request->ten;
                 $hotro->url = $request->url;
                 $hotro->hinh_anh = $imageName;
+                $hotro->sdt = $request->sdt;
                 $res = $hotro->save();
                 if($res){
                     \DB::commit();
@@ -55,6 +56,7 @@ class HoTroTrucTuyenController extends Controller
                         'hinh_anh'=>$imageName,
                         'ten'=>$hotro->ten,
                         'url'=>$hotro->url,
+                        'sdt'=>$hotro->sdt,
                         'id'=>$hotro->id
                     ]);
                 }else{
@@ -66,12 +68,13 @@ class HoTroTrucTuyenController extends Controller
                 }
             }catch(\Exception $e){
                 \DB::rollBack();
+                return response()->json([
+                    'status'=>'fail',
+                    'page'=>'store',
+                    'error'=>$e->getMessage()
+                ]);
             }
         }
-        return response()->json([
-            'status'=>'fail',
-            'page'=>'store'
-        ]);
     }
 
     /**

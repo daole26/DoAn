@@ -44,6 +44,10 @@ summary, hgroup {
     transition: 0.3s all linear;
 }
 
+.text-error{
+    color:red;
+}
+
 body {
     color: #333;
     font-family: Diavlo_LIGHT !important;

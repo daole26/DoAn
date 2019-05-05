@@ -18,6 +18,7 @@ class CreateHoTroTrucTuyensTable extends Migration
             $table->string('hinh_anh');
             $table->string('ten');
             $table->string('url');
+            $table->string('sdt');
             $table->timestamps();
         });
     }

@@ -27,8 +27,10 @@ class DatTourController extends Controller
         $cur_date = date('Y-m-d');
         $ngay_khoi_hanh = date('Y-m-d',mktime(0,0,0,$request->month,$request->day,$request->year));
         if($cur_date>$ngay_khoi_hanh){
-            echo 'Ngày khởi hành phải đặt sau ngày hiện tại<br>';
-            return redirect()->back();
+            return response()->json([
+                'status'=>'fail',
+                'error'=>'Ngày khởi hành phải đặt sau ngày hiện tại'
+            ]);
         }
         \DB::beginTransaction();
         try{
@@ -54,11 +56,15 @@ class DatTourController extends Controller
             $chitietdattour->save();
             \DB::commit();
             $this->sendMailUser($request->email,$dattour,$chitietdattour,$chitietdattour->tour);
-            echo 'Chèn thành công, kiểm tra email của bạn<br>';
-            return redirect()->back();
+            return response()->json([
+                'status'=>'success'
+            ]);
         }catch(\Exception $e){
             \DB::rollBack();
-            var_dump($e->getMessage());
+            return response()->json([
+                'status'=>'fail',
+                'error'=>$e->getMessage()
+            ]);
         }
     }
 }

@@ -41,7 +41,7 @@
             @endif
             <div class="col-lg-9 no_padding_r no_padding_l">
                 <div class="title_product">
-                    <h2>
+                    <h2 id="danhmuc-{{$danhmuc_all->id}}">
                         <a href="{{route('tour.followdanhmuc',['slug'=> $danhmuc_all->slug])}}">{{$danhmuc_all->ten_danh_muc}}</a>
                     </h2>
                 </div>

@@ -23,6 +23,9 @@ class comment extends Model
 
     public function getCommentAtAttribute()
     {
-        return $this->created_at->format(config('define.date_format'));
+        if(!empty($this->created_at) )
+            return $this->created_at->format(config('define.date_format'));
+        else
+            return '';
     }
 }
