@@ -9,7 +9,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Người Dùng</h3>
+					<h3 class="box-title">Hỗ trợ trực tuyến</h3>
 				</div>
 
 				<div id="bx-header" class="box-header">
