@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('Content')
 <div class="">
-    <h1 style="display: none;">Du lịch Đà Nẵng Xanh hệ thống đặt tour du lịch Việt Nam chất lượng 2018</h1>
     <div class="news">
         <h2 id="news-title" class="title wow slideInUp">{{$tieude}}</h2>
             <div class="news_grid">
@@ -19,8 +18,8 @@
                             <span class="title_n">
                                 <a class="n_title" title="{{$tintuc->tieu_de}}" href="tin-tuc/{{$tintuc->slug}}">{{$tintuc->tieu_de}}</a>
                             </span>
-                            <p class="des_n">
-                                {{mb_substr(strip_tags($tintuc->noi_dung),0,20)}}
+                            <p class="des_n elipsis">
+                                {!!strip_tags($tintuc->noi_dung)!!}
                             </p>
                         </div>
                         @if($i%2==1)

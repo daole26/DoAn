@@ -85,49 +85,58 @@ class TourController extends Controller
 
     public function update(Request $request, $slug)
     {
-        $validatedData = $request->validate([
-            'ten_tour' => 'required',
-            'ma_tour' => 'required',
-            'hinh_anh' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'thoi_gian' => 'required',
-            'diem_khoi_hanh' => 'required',
-            'lich_trinh' => 'required',
-            'phuong_tien' => 'required',
-            'gia_tour' => 'required',
-            'chuong_trinh' => 'required',
-            'dieu_kien' => 'required',
-            'phu_luc' => 'required',
-        ]);
-        
-        $tour1 = tour::where('slug', $slug)->first();
+        \DB::beginTransaction();
+        try{
+            $validatedData = $request->validate([
+                'ten_tour' => 'required',
+                'ma_tour' => 'required',
+                'hinh_anh' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'thoi_gian' => 'required',
+                'diem_khoi_hanh' => 'required',
+                'lich_trinh' => 'required',
+                'phuong_tien' => 'required',
+                'gia_tour' => 'required',
+                'chuong_trinh' => 'required',
+                'dieu_kien' => 'required',
+                'phu_luc' => 'required',
+            ]);
+            
+            $tour1 = tour::where('slug', $slug)->first();
 
-        if (!empty($request->hinh_anh)) {
-            // Delete the previous image
-            $imageName = time() . '.' . request()->hinh_anh->getClientOriginalExtension();
-            request()->hinh_anh->move(public_path('images'), $imageName);
-            $tour1->hinh_anh = $imageName;
+            if (!empty($request->hinh_anh)) {
+                // Delete the previous image
+                if(file_exists(public_path('images/'.$tour1->hinhAnhs[0]->hinh_anh))){
+                    unlink(public_path('images/'.$tour1->hinhAnhs[0]->hinh_anh));
+                }
+                $imageName = time() . '.' . request()->hinh_anh->getClientOriginalExtension();
+                request()->hinh_anh->move(public_path('images'), $imageName);
+            }
+
+            $tour1->ten_tour = $request->ten_tour;
+            $tour1->ma_tour = $request->ma_tour;
+            $tour1->id_danh_muc = $request->id_danh_muc;
+            $tour1->id_khuyen_mai=$request->id_khuyen_mai;
+            $tour1->id_hinh_thuc_tour =$request->id_hinh_thuc;
+            $tour1->thoi_gian = $request->thoi_gian;
+            $tour1->diem_khoi_hanh = $request->diem_khoi_hanh;
+            $tour1->lich_trinh = $request->lich_trinh;
+            $tour1->phuong_tien = $request->phuong_tien;
+            $tour1->gia_tour = $request->gia_tour;
+            $tour1->chuong_trinh = $request->chuong_trinh;
+            $tour1->dieu_kien = $request->dieu_kien;
+            $tour1->phu_luc = $request->phu_luc;
+
+            $tour1->save();
+            if (!empty($request->hinh_anh)) {
+                $tour1->hinhAnhs()->update(['hinh_anh'=>$imageName]);
+            }
+            \DB::commit();
+            return redirect()->route('tour.index');
+        }catch(\Exception $e){
+            echo $e->getMessage();
+            \DB::rollback();
+            //return redirect()->route('tour.index');
         }
-
-        $tour1->ten_tour = $request->ten_tour;
-        $tour1->ma_tour = $request->ma_tour;
-        $tour1->id_danh_muc = $request->id_danh_muc;
-        $tour1->id_khuyen_mai=$request->id_khuyen_mai;
-        $tour1->id_hinh_thuc_tour =$request->id_hinh_thuc;
-        $tour1->thoi_gian = $request->thoi_gian;
-        $tour1->diem_khoi_hanh = $request->diem_khoi_hanh;
-        $tour1->lich_trinh = $request->lich_trinh;
-        $tour1->phuong_tien = $request->phuong_tien;
-        $tour1->gia_tour = $request->gia_tour;
-        $tour1->chuong_trinh = $request->chuong_trinh;
-        $tour1->dieu_kien = $request->dieu_kien;
-        $tour1->phu_luc = $request->phu_luc;
-
-        $tour1->save();
-        if (!empty($request->hinh_anh)) {
-            $tour1->hinhAnhs->hinh_anh=$imageName;
-            $tour1->hinhAnhs->save();
-        }
-        return redirect()->route('tour.index');
     }
 
     public function destroy($slug)
