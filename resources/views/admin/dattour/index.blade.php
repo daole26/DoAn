@@ -6,7 +6,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Tour</h3>
+          <h3 class="box-title">Đơn đặt tour</h3>
         </div>
 
         <!-- /.box-header -->

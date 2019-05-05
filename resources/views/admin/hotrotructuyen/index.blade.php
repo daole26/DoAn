@@ -9,7 +9,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Người Dùng</h3>
+					<h3 class="box-title">Hỗ trợ trực tuyến</h3>
 				</div>
 
 				<div id="bx-header" class="box-header">
@@ -17,7 +17,8 @@
 						<div class="form-group">
                             <input type="file" class="mx-5 hidden" id="fl-image">
                             <input type="text" class="mx-5" id="txt-url" placeholder="Nhập đường dẫn">
-                            <input type="text" class="mx-5" id="txt-ten" placeholder="Nhập tên">
+							<input type="text" class="mx-5" id="txt-ten" placeholder="Nhập tên">
+							<input type="text" class="mx-5" id="txt-phone" placeholder="Nhập số điện">
                             <a href="{{route('hotro.store')}}" id="btn-them" data-token="{{csrf_token()}}" class="mx-5 btn btn-info btn-flat">
                                 <i class="fa fa-plus"></i>
                             </a>
@@ -37,6 +38,7 @@
                                 <th>Avatar</th>
                                 <th>Tên</th>
 								<th>Link</th>
+								<th>Số điện thoại</th>
 								<th>Hành Động</th>
 							</tr>
 						</thead>
@@ -48,6 +50,7 @@
                                 <td> <img src="{{asset('images/hotro/'.$hotro->hinh_anh)}}" width ="100" alt="{{$hotro->ten}}"> </td>
                                 <td>{{$hotro->ten}}</td>
 								<td> {{$hotro->url}} </td>
+								<td> {{$hotro->sdt}} </td>
 								
 
 								<td>

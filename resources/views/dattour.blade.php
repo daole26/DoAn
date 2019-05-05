@@ -1,29 +1,26 @@
 @extends('layouts.master')
 @section('Content')
 <div class="tour" >
-    <form action="{{route('dattour.dattour')}}" method="post" accept-charset="utf-8" id="book_tour">
-        @csrf
-        <h1 style="display: none" class="title"><span>{{$tour->ten_tour}}</span></h1>
-        
-                        
+    <form data-token="{{csrf_token()}}" action="{{route('dattour.dattour')}}" method="post" accept-charset="utf-8" id="book_tour">
+        <h1 style="display: none" class="title"><span>{{$tour->ten_tour}}</span></h1>                
         <div style="border-bottom: #ccc dotted 1px; padding: 15px 0; margin-bottom: 20px; background: #fff">
             <div class="col-lg-6 col-md-6 col-sm-6" style="border-right: #ccc dotted 1px;">
                 
                 <h2 class="title"><span>Thông tin đặt Tour</span></h2>
-                <br>
+                <ul class="text-error" id="lst-error"></ul>
                 <div class="form-group col-lg-12">
-                    <input type="hidden" name="id_tour" value="{{$tour->id}}">
-                    <input type="hidden" name="ma_tour"  value="{{$tour->ma_tour}}">
+                    <input type="hidden" id="hid-id_tour" name="id_tour" value="{{$tour->id}}">
+                    <input type="hidden" id="hid-ma_tour" name="ma_tour"  value="{{$tour->ma_tour}}">
                     <input type="text" name="fullname" id="fullname" class="form-control" value="{{Auth::user()->ten_hien_thi}}" disabled="" placeholder="Họ tên *" >
                 </div>
                 <div class="form-group col-md-6">
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Điện thoại *">
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Điện thoại *" required="">
                 </div>
                 <div class="form-group col-md-6 ">
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Email *">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Email *" required="">
                 </div>
                 <div class="form-group col-lg-12">
-                    <input type="text" name="address" id="address" class="form-control" placeholder="Địa chỉ *">
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Địa chỉ *" required="">
                 </div>
 
 
@@ -31,6 +28,9 @@
                     <div class="form-group col-md-4">
                         <select name="day" id="ngay" class="form-control" >
                             <option value="">Ngày khởi hành</option>
+                            @for($i=1;$i<32;$i++)
+                                <option id="opt-day-{{$i}}" value="{{$i}}">{{$i}}</option>
+                            @endfor
                         </select>
                     </div>
                     <div class="form-group col-md-4">
@@ -96,7 +96,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <select name="baby" id="baby" class="form-control" >
-                        <option value="">Em bé</option>
+                        <option value="0">Em bé</option>
                                                 <option value="0">0</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -134,7 +134,7 @@
                     <p><strong>Phương tiện:&nbsp;</strong>{{$tour->phuong_tien}}</p>
                     <p><strong>Hình thức:&nbsp;</strong>{{$tour->hinhThucTour->hinh_thuc}}</p>
                     <div><strong>Giá tour:</strong><span class="tour_price"> {{number_format($tour->gia_tour*1000,0,',','.')}}vnđ / </span><strong>người lớn</strong></div>
-                    <input type="hidden" name="gia_tour" value="{{$tour->gia_tour}}">
+                    <input type="hidden" id="hid-gia_tour" name="gia_tour" value="{{$tour->gia_tour}}">
                     <div><strong>Tổng thanh toán: <span id="total_payment" class="tour_price">0 </span></strong> vnđ</div>
 
                 </div>
@@ -143,12 +143,8 @@
         </div>
 
         <div class="row" style="text-align: center">
-            <h3></h3>
-            <h4>
-                            </h4>
-            <button type="submit" class=" btn_booking">Đặt tour</button>
+            <button type="submit" id="btn-booking" class="btn_booking">Đặt tour</button>
         </div>
-        <input type="hidden" name="payment" id="payment_id" value="VP">
     </div>
     </form>     
 
@@ -156,4 +152,5 @@
 @endsection
 @section('script')
 <script src="{{url('js/dulich_detail.js')}}"></script>
+<script src="{{url('js/dattour_insert.js')}}"></script>
 @endsection
