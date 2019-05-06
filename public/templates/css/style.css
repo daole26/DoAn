@@ -70,7 +70,12 @@ a:focus{
 .n_padding_l_r{padding:0 !important}
 
 .white_bg{background: #fff}
-
+.elipsis{
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 
 #wrapper {

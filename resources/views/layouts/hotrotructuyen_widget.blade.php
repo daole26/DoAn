@@ -19,6 +19,10 @@
                         {{$_hotro->ten}}
                     </a>
                 </p>
+                <p>
+                    <i class="glyphicon glyphicon-phone"></i>
+                    {{$_hotro->sdt}}
+                </p>
             </div>
             <div class="clearfix"></div>
         </div>

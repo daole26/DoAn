@@ -15,8 +15,8 @@
     <div class="column col-lg-9 col-md-9">
 
         <h1 class="title">{{$tintuc->tieu_de}}</h1>
-        <h2>{{mb_substr(strip_tags($tintuc->noi_dung),0,30)}}...</h2>
-        <img src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}" alt="{{$tintuc->tieu_de}}">
+        <h2 class="elipsis">{!!strip_tags($tintuc->noi_dung)!!}</h2>
+        <img width="100%" src="{{asset('images/'.$tintuc->hinh_anh->hinh_anh)}}" alt="{{$tintuc->tieu_de}}">
         {!!$tintuc->noi_dung!!}
     </div>
 
