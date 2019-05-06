@@ -18,7 +18,7 @@
                             <input type="file" class="mx-5 hidden" id="fl-image">
                             <input type="text" class="mx-5" id="txt-url" placeholder="Nhập đường dẫn">
 							<input type="text" class="mx-5" id="txt-ten" placeholder="Nhập tên">
-							<input type="text" class="mx-5" id="txt-phone" placeholder="Nhập số điện">
+							<input type="text" class="mx-5" id="txt-phone" placeholder="Nhập số điện thoại">
                             <a href="{{route('hotro.store')}}" id="btn-them" data-token="{{csrf_token()}}" class="mx-5 btn btn-info btn-flat">
                                 <i class="fa fa-plus"></i>
                             </a>
@@ -54,6 +54,9 @@
 								
 
 								<td>
+									<a href="{{route('hotro.update')}}" data-id="{{$hotro->id}}" class="btn btn-primary btn-flat btn-update-trigger">
+										<span class="fa fa-pencil"></span>
+									</a>
 									<a class="btn btn-danger btn-flat btn-del" href="{{route('hotro.destroy', $hotro->id)}}">
 										<i class="fa fa-trash"></i>
 									</a>

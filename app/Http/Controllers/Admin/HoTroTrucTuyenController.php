@@ -53,7 +53,7 @@ class HoTroTrucTuyenController extends Controller
                     return response()->json([
                         'status'=>'ok',
                         'page'=>'store',
-                        'hinh_anh'=>$imageName,
+                        'hinh_anh'=>$hotro->hinh_anh,
                         'ten'=>$hotro->ten,
                         'url'=>$hotro->url,
                         'sdt'=>$hotro->sdt,
@@ -106,9 +106,45 @@ class HoTroTrucTuyenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        \DB::beginTransaction();
+        try{
+
+            $hotro = ho_tro_truc_tuyen::where('id',$request->id)->first();
+            $hotro->ten = $request->ten;
+            $hotro->url = $request->url;
+            if(!empty($request->hinh_anh)){
+                $imageName = time().'.'.request()->hinh_anh->getClientOriginalExtension();
+                    request()->hinh_anh->move(public_path('images/hotro'), $imageName);
+                $hinhanh = $hotro->hinh_anh;
+                if(file_exists(public_path('images/hotro/'.$hinhanh))){
+                    unlink(public_path('images/hotro/'.$hinhanh));
+                }
+                $hotro->hinh_anh = $imageName;
+            }
+            $hotro->sdt = $request->sdt;
+            $res = $hotro->save();
+
+            \DB::commit();
+            return response()->json([
+                'page'=>'update',
+                'status'=>'ok',
+                'hinh_anh'=>$hotro->hinh_anh,
+                'ten'=>$hotro->ten,
+                'url'=>$hotro->url,
+                'sdt'=>$hotro->sdt,
+                'id'=>$hotro->id
+            ]);
+        }catch(\Exception $e){
+            \DB::rollback();
+            return response()->json([
+                'page'=>'update',
+                'status'=>'fail',
+                'error'=>$e->getMessage()
+            ]);
+        }
+        
     }
 
     /**

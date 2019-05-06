@@ -34,6 +34,7 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 
 	Route::get('hotrotructuyen','HoTroTrucTuyenController@index')->name('hotro.index');
 	Route::post('hotrotructuyen/store','HoTroTrucTuyenController@store')->name('hotro.store');
+	Route::post('hotrotructuyen/update','HoTroTrucTuyenController@update')->name('hotro.update');
 	Route::get('hotrotructuyen/destroy/{id}','HoTroTrucTuyenController@destroy')->name('hotro.destroy');
 
 	Route::resource('dattour', 'DatTourController')->except('destroy');
